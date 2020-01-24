@@ -1,5 +1,5 @@
 # CONDUCT
-##Responsable
+## Responsable
 Sylvie Gibet (sylvie.gibet@univ-ubs.fr), équipe EXPRESSION, laboratoire IRISA
 Contexte scientifique
 Ce projet s’inscrit dans les axes de recherche l’équipe Expression (https://wwwexpression.irisa.fr/fr/) qui concernent l’analyse et la synthèse des données expressives
@@ -23,10 +23,10 @@ La synthèse sera réalisée grâce au framework Faust et au système de synthè
 Data.
 Ce projet sera poursuivi en M2 dans le cadre d’une application de réalité virtuelle intégrant
 la visualisation interactive d’objets sonores (exemple Audica).
-##Méthodes et outils
-###Matériel : clavier HAKEN, système Leap Motion pour la reconnaissance de gestes
+## Méthodes et outils
+### Matériel : clavier HAKEN, système Leap Motion pour la reconnaissance de gestes
 et le tracking
-###Environnement technique
+### Environnement technique
 Le projet pourra être développé dans l’environnement Unity 3D, mais pas nécessairement.
 Le framework Faust sera utilisé pour générer un système de synthèse audionumérique, et
 la communication sera gérée par le protocole OSC (Open Sound Control).
