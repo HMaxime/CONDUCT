@@ -24,8 +24,8 @@ Data.
 Ce projet sera poursuivi en M2 dans le cadre d’une application de réalité virtuelle intégrant
 la visualisation interactive d’objets sonores (exemple Audica).
 ## Méthodes et outils
-### Matériel : clavier HAKEN, système Leap Motion pour la reconnaissance de gestes
-et le tracking
+### Matériel : 
+clavier HAKEN, système Leap Motion pour la reconnaissance de gestes et le tracking
 ### Environnement technique
 Le projet pourra être développé dans l’environnement Unity 3D, mais pas nécessairement.
 Le framework Faust sera utilisé pour générer un système de synthèse audionumérique, et
