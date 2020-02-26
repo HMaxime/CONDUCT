@@ -7,15 +7,15 @@ public class Tests : MonoBehaviour
     Mouvement hands;
     DataSet dataset;
     Transform palmLeft;
+    Classifier classifier;
+    UIController uiController;
+
     float[] actualLeftHand;
     float[] actualRightHand;
-    Classifier classifier;
-    int classe=-1;
+    float minimumHorizontal = 20;
+    float maxmimumHorizontal = -20;
+    int classe = -1;
 
-    public Tests()
-    {
-       
-    }
 
     private void Start()
     {
@@ -24,18 +24,20 @@ public class Tests : MonoBehaviour
         actualRightHand = new float[5];
         classifier = new Classifier();
         this.hands = (Mouvement)GetComponent("Mouvement");
+        this.uiController=(UIController)GameObject.Find("Canvas").GetComponent("UIController");
     }
 
     // Update is called once per frame
     void Update()
     {
+        this.hands = (Mouvement)GetComponent("Mouvement");
         palmLeft = hands.PalmLeft;
         actualLeftHand[0] = hands.getDistanceBetween(hands.ThumbLeft, palmLeft);
         actualLeftHand[1] = hands.getDistanceBetween(hands.IndexLeft, palmLeft);
         actualLeftHand[2] = hands.getDistanceBetween(hands.MiddleLeft, palmLeft);
         actualLeftHand[3] = hands.getDistanceBetween(hands.PinkLeft, palmLeft);
         actualLeftHand[4] = hands.getDistanceBetween(hands.RingLeft, palmLeft);
-        this.classe=classifier.knn(3, dataset.Datas, dataset.Target, actualLeftHand);
+        this.classe = classifier.knn(3, dataset.Datas, dataset.Target, actualLeftHand);
     }
 
 
@@ -48,7 +50,9 @@ public class Tests : MonoBehaviour
         switch (this.classe)
         {
             case 0:
-                GUI.Label(new Rect(10, 10, 500, 100), "Poing Fermé !",style);
+                GUI.Label(new Rect(10, 10, 500, 100), "Poing Fermé !", style);
+                float value = this.hands.PalmRight.position.x * 3;
+                uiController.setStereoSliderValue(value);
                 break;
             case 1:
                 GUI.Label(new Rect(10, 10, 500, 100), "Main ouverte !", style);
@@ -56,10 +60,11 @@ public class Tests : MonoBehaviour
 
             case 2:
                 GUI.Label(new Rect(10, 10, 500, 100), "Deux doigts !", style);
+                uiController.setVolumeSliderValue(this.hands.PalmRight.position.y*3);
                 break;
 
             default:
-                GUI.Label(new Rect(10, 10, 500, 100), "Chargement !",style);
+                GUI.Label(new Rect(10, 10, 500, 100), "Chargement !", style);
                 break;
         }
 
