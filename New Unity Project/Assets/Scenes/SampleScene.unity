@@ -1928,8 +1928,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 331780139}
-  - component: {fileID: 331780137}
   - component: {fileID: 331780138}
+  - component: {fileID: 331780137}
+  - component: {fileID: 331780140}
+  - component: {fileID: 331780141}
   m_Layer: 0
   m_Name: HandModels
   m_TagString: Untagged
@@ -1944,13 +1946,11 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 331780136}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f9c159f961e4d1e4bb453854dc45e244, type: 3}
+  m_Script: {fileID: 11500000, guid: 044ce45af45ad3e4597ef41a5a41a035, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tr1: {fileID: 0}
-  tr2: {fileID: 0}
 --- !u!114 &331780138
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2000,6 +2000,30 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &331780140
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 331780136}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad88672a7e7c63446a17174616b8c151, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &331780141
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 331780136}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5b1eb54a9ec05a4a9c75e74d091615c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &528677925 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 11422472, guid: 23f2cce114628a448bfeaae171b4c0c0,
