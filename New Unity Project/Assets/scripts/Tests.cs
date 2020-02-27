@@ -17,13 +17,14 @@ public class Tests : MonoBehaviour
     int classe = -1;
     OscMessage message;
     OSC osc;
+	bool alreadySent=false;
 
 
     private void Start()
     {
+		osc=(OSC)GetComponent("OSC");
         message = new OscMessage();
-        message.address = "127.0.0.1:5000";
-        dataset = new DataSet(@"C:\Users\MaximeHamon\Documents\Cours\UBS\S2\INF2212_projet\CONDUCT\New Unity Project\Assets\scripts\Datas");
+        dataset = new DataSet(@"C:\Users\AIDN-etudiant\Documents\CONDUCT\New Unity Project\Assets\scripts\Datas");
         actualLeftHand = new float[5];
         actualRightHand = new float[5];
         classifier = new Classifier();
@@ -55,8 +56,13 @@ public class Tests : MonoBehaviour
         {
             case 0:
                 GUI.Label(new Rect(10, 10, 500, 100), "Poing Fermé !", style);
-                message.values.Add(1);
-                osc.Send(message);
+				if(this.alreadySent==false){
+					message.values.Add(1);
+					message.address="/127.0.0.1:5000";
+					print("Message : "+message);
+					osc.Send(message);
+					this.alreadySent=true;
+				}
                 float value = this.hands.PalmRight.position.x * 3;
                 uiController.setStereoSliderValue(value);
                 break;

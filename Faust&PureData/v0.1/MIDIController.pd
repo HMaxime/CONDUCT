@@ -1,4 +1,4 @@
-#N canvas -7 0 958 988 12;
+#N canvas -8 0 1278 1326 12;
 #X obj 211 516 midiout;
 #X msg 87 116 stop;
 #X obj 213 463 cyclone/midiflush;
@@ -8,7 +8,7 @@
 #X obj 197 258 cyclone/comment 50 11 helvetica ? 0 0 0 0 Control;
 #X obj 311 259 cyclone/comment 50 11 helvetica ? 0 0 0 0 Aftertouch
 ;
-#X obj 671 465 cyclone/comment 0 11 helvetica ? 0 0 0 0;
+#X obj 671 465 cyclone/comment 0 11 helvetica ? 0 0 0 0 comment;
 #X obj 426 260 cyclone/comment 0 11 helvetica ? 0 0 0 0 Channel;
 #X obj 37 252 cyclone/comment 43 11 helvetica ? 0 0 0 0 Note in;
 #X obj 110 260 cyclone/comment 0 11 helvetica ? 0 0 0 0 Poly touch
@@ -17,13 +17,13 @@
 #X obj 426 242 nbx 2 14 -1e+037 1e+037 0 0 empty empty empty 0 -8 0
 10 -228856 -1 -1 1 256;
 #X obj 313 243 nbx 3 14 -1e+037 1e+037 0 0 empty empty empty 0 -8 0
-10 -228856 -1 -1 4 256;
+10 -228856 -1 -1 0 256;
 #X obj 263 243 nbx 3 14 -1e+037 1e+037 0 0 empty empty empty 0 -8 0
 10 -228856 -1 -1 0 256;
 #X obj 16 240 nbx 3 14 -1e+037 1e+037 0 0 empty empty empty 0 -8 0
-10 -228856 -1 -1 72 256;
+10 -228856 -1 -1 67 256;
 #X obj 58 241 nbx 3 14 -1e+037 1e+037 0 0 empty empty empty 0 -8 0
-10 -228856 -1 -1 100 256;
+10 -228856 -1 -1 0 256;
 #X obj 65 211 unpack;
 #X obj 96 242 nbx 3 14 -1e+037 1e+037 0 0 empty empty empty 0 -8 0
 10 -228856 -1 -1 0 256;
@@ -34,7 +34,7 @@
 10 -228856 -1 -1 0 256;
 #X obj 220 243 nbx 3 14 -1e+037 1e+037 0 0 empty empty empty 0 -8 0
 10 -228856 -1 -1 101 256;
-#X obj 412 322 cyclone/comment 215 11 helvetica ? 0 0 0 0;
+#X obj 412 322 cyclone/comment 215 11 helvetica ? 0 0 0 0 comment;
 #X obj 214 347 cyclone/midiformat;
 #X obj 17 295 pack;
 #X obj 120 282 pack;
@@ -53,7 +53,7 @@
 -1;
 #X text 35 31 Stop;
 #X obj 486 330 nbx 5 14 0 1 0 0 empty empty empty 0 -8 0 10 -262144
--1 -1 1 256;
+-1 -1 0 256;
 #X obj 89 681 oscparse;
 #X obj 10 653 oscformat;
 #X obj 91 709 list trim;
@@ -82,6 +82,7 @@
 #X msg 612 615 listen 5002;
 #X obj 613 644 netreceive -u -b 5002;
 #X obj 12 153 cyclone/seq res/compo1.mid;
+#X obj 227 697 print "Receive";
 #X connect 1 0 3 0;
 #X connect 1 0 66 0;
 #X connect 2 0 0 0;
@@ -111,7 +112,6 @@
 #X connect 30 0 4 0;
 #X connect 30 1 17 0;
 #X connect 30 2 20 0;
-#X connect 30 3 14 0;
 #X connect 30 4 13 0;
 #X connect 30 5 46 0;
 #X connect 30 6 12 0;
@@ -126,7 +126,9 @@
 #X connect 41 0 40 0;
 #X connect 42 0 49 0;
 #X connect 43 0 44 0;
+#X connect 43 0 67 0;
 #X connect 44 0 40 0;
+#X connect 44 0 67 0;
 #X connect 46 0 24 5;
 #X connect 49 1 28 0;
 #X connect 51 0 53 0;

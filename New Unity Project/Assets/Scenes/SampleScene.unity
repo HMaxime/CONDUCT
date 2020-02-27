@@ -2074,6 +2074,7 @@ GameObject:
   - component: {fileID: 331780137}
   - component: {fileID: 331780140}
   - component: {fileID: 331780141}
+  - component: {fileID: 331780142}
   m_Layer: 0
   m_Name: HandModels
   m_TagString: Untagged
@@ -2166,6 +2167,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5b1eb54a9ec05a4a9c75e74d091615c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &331780142
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 331780136}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac866f7496b0cd140beecda616930050, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inPort: 6969
+  outIP: localhost
+  outPort: 5001
 --- !u!1 &346007848
 GameObject:
   m_ObjectHideFlags: 0
@@ -2947,6 +2963,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Capsule Hand Left
       objectReference: {fileID: 0}
+    - target: {fileID: 11407378, guid: 869d20cdda15af24aab9e72b5f2eec78, type: 3}
+      propertyPath: _showArm
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 464466, guid: 869d20cdda15af24aab9e72b5f2eec78, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.68402386
@@ -2989,10 +3009,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 464466, guid: 869d20cdda15af24aab9e72b5f2eec78, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 11407378, guid: 869d20cdda15af24aab9e72b5f2eec78, type: 3}
-      propertyPath: _showArm
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
