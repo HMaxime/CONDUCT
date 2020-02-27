@@ -1,0 +1,12 @@
+#N canvas 895 32 867 579 12;
+#X obj 105 182 oscparse;
+#X obj 26 154 oscformat;
+#X obj 107 210 list trim;
+#X obj 108 240 unpack s f;
+#X obj 106 316 outlet;
+#X obj 184 105 inlet;
+#X connect 0 0 2 0;
+#X connect 1 0 0 0;
+#X connect 2 0 3 0;
+#X connect 3 1 4 0;
+#X connect 5 0 0 0;
