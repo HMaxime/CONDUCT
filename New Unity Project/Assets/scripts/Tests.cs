@@ -15,10 +15,14 @@ public class Tests : MonoBehaviour
     float minimumHorizontal = 20;
     float maxmimumHorizontal = -20;
     int classe = -1;
+    OscMessage message;
+    OSC osc;
 
 
     private void Start()
     {
+        message = new OscMessage();
+        message.address = "127.0.0.1:5000";
         dataset = new DataSet(@"C:\Users\MaximeHamon\Documents\Cours\UBS\S2\INF2212_projet\CONDUCT\New Unity Project\Assets\scripts\Datas");
         actualLeftHand = new float[5];
         actualRightHand = new float[5];
@@ -51,6 +55,8 @@ public class Tests : MonoBehaviour
         {
             case 0:
                 GUI.Label(new Rect(10, 10, 500, 100), "Poing Fermé !", style);
+                message.values.Add(1);
+                osc.Send(message);
                 float value = this.hands.PalmRight.position.x * 3;
                 uiController.setStereoSliderValue(value);
                 break;
