@@ -54,7 +54,7 @@ public class Tests : MonoBehaviour
     {
         GUIStyle style = new GUIStyle("Box");
         style.fontSize = 25;
-
+        float value;
         //On fait la calibration
         if (!calibration)
         {
@@ -115,13 +115,12 @@ public class Tests : MonoBehaviour
                     GUI.Label(new Rect(10, 10, 500, 100), "Poing Fermé !", style);
 
 
-                    float value = this.hands.PalmRight.position.x * 3;
+                    value = (this.hands.PalmRight.position.x - miniHorizontal) / (maxiHorizontal - miniHorizontal)*2-1;
                     uiController.setStereoSliderValue(value);
-
+                    print(value);
                     message.address = "/127.0.0.1:5001";
                     message.values.Add(1);
                     osc.outPort = 5001;
-                    print("Message : " + message);
                     osc.Send(message);
 
 
@@ -131,13 +130,12 @@ public class Tests : MonoBehaviour
                     break;
 
                 case 2:
+                    value = (this.hands.PalmRight.position.y - miniVertical) / (maxiVertical - miniVertical);
                     GUI.Label(new Rect(10, 10, 500, 100), "Deux doigts !", style);
-                    uiController.setVolumeSliderValue((this.hands.PalmRight.position.y-miniVertical)/(miniVertical-maxiVertical));
-
+                    uiController.setVolumeSliderValue(value);
                     message.address = "/127.0.0.1:5000";
-                    message.values.Add((this.hands.PalmRight.position.y-miniVertical)/(miniVertical-maxiVertical));
+                    message.values.Add(value);
                     osc.outPort = 5000;
-                    print("Message : " + message);
                     osc.Send(message);
                     break;
 
