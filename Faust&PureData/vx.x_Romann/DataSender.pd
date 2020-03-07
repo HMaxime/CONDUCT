@@ -1,4 +1,4 @@
-#N canvas 953 0 958 988 12;
+#N canvas 436 64 958 988 12;
 #X floatatom 24 85 5 0 0 0 - - -;
 #X obj 33 205 oscformat /ramp1;
 #X obj 46 249 list prepend send;
@@ -6,7 +6,7 @@
 #X obj 98 404 netsend -u -b;
 #X msg 132 323 connect localhost 5000;
 #X msg 142 359 disconnect;
-#X floatatom 76 80 5 0 0 0 - - -;
+#X floatatom 79 84 5 0 0 0 - - -;
 #X floatatom 126 83 5 0 0 0 - - -;
 #X floatatom 186 82 5 0 0 0 - - -;
 #X text 66 61 Tempo;
