@@ -1,4 +1,4 @@
-#N canvas 436 64 958 988 12;
+#N canvas 616 47 958 988 12;
 #X floatatom 24 85 5 0 0 0 - - -;
 #X obj 33 205 oscformat /ramp1;
 #X obj 46 249 list prepend send;
