@@ -14,7 +14,12 @@ public class DataSet
     {
         files = Directory.GetFiles(folderPath,"*.txt");
         int i = 0;
-        int nbElt= File.ReadLines(files[0]).Count() + File.ReadLines(files[1]).Count()+ File.ReadLines(files[2]).Count();
+        //int nbElt= File.ReadLines(files[0]).Count() + File.ReadLines(files[1]).Count()+ File.ReadLines(files[2]).Count();
+        int nbElt = 0;
+        for(int l = 0; l < files.Length; l++)
+        {
+            nbElt += File.ReadLines(files[l]).Count();
+        }
         datas = new float[nbElt][];
         target = new int[nbElt];
         int k = 0;
@@ -26,12 +31,10 @@ public class DataSet
             {
                 string[] stringDistances = line.Split(' ');
                 float[] floatDistance = new float[stringDistances.Length];
-                
                 for (int j = 0; j < stringDistances.Length; j++)
                 {
                     floatDistance[j] = float.Parse(stringDistances[j]);
                 }
-                
                 datas[i] = floatDistance;
                 target[i] = k;
                 i++;

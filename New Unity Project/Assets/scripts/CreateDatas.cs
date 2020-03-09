@@ -30,7 +30,7 @@ public class CreateDatas : MonoBehaviour
         {
             Transform palm = hands.PalmLeft;
             string line = "";
-            line += " " + hands.getDistanceBetween(hands.ThumbLeft, palm);
+            line += hands.getDistanceBetween(hands.ThumbLeft, palm);
             line += " " + hands.getDistanceBetween(hands.IndexLeft, palm);
             line += " " + hands.getDistanceBetween(hands.MiddleLeft, palm);
             line += " " + hands.getDistanceBetween(hands.PinkLeft, palm);
@@ -53,17 +53,32 @@ public class CreateDatas : MonoBehaviour
         {
             if (GUI.Button(new Rect(10, 10, 300, 100), "Click to record for clenched fist !"))
             {
-                path = folder + @"\Test15.txt";
+                path = folder + @"\0.txt";
                 sw = File.AppendText(path);
                 isRecording = !isRecording;
             }
 
             if (GUI.Button(new Rect(340, 10, 300, 100), "Click to record for Open hand !"))
             {
-                path = folder + @"\Test14.txt";
+                path = folder + @"\1.txt";
+                sw = File.AppendText(path);
+                isRecording = !isRecording;
+            }
+
+            if (GUI.Button(new Rect(680, 10, 300, 100), "Click to record for two Fingers !"))
+            {
+                path = folder + @"\2.txt";
+                sw = File.AppendText(path);
+                isRecording = !isRecording;
+            }
+
+            if (GUI.Button(new Rect(1020, 10, 300, 100), "Click to record for one Finger !"))
+            {
+                path = folder + @"\3.txt";
                 sw = File.AppendText(path);
                 isRecording = !isRecording;
             }
         }
     }
+
 }

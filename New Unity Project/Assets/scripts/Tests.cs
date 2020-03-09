@@ -24,6 +24,8 @@ public class Tests : MonoBehaviour
     bool calibration = false;
     bool calibrationVertical = false;
 
+    float volume, tempo, attack, frequency=0;
+
     private void Start()
     {
         osc = (OSC)GetComponent("OSC");
@@ -109,42 +111,50 @@ public class Tests : MonoBehaviour
         {
             //Pour avoir les valeurs dans le bon interval : new_x=(x-M)/(N-M)
             message = new OscMessage();
+            message.address = "/127.0.0.1:5000";
             switch (this.classe)
             {
                 case 0:
                     GUI.Label(new Rect(10, 10, 500, 100), "Poing Fermé !", style);
-
-
-                    value = (this.hands.PalmRight.position.x - miniHorizontal) / (maxiHorizontal - miniHorizontal)*2-1;
-                    uiController.setStereoSliderValue(value);
-                    print(value);
-                    message.address = "/127.0.0.1:5001";
-                    message.values.Add(1);
-                    osc.outPort = 5001;
-                    osc.Send(message);
-
-
+                    value = (this.hands.PalmRight.position.x - miniHorizontal) / (maxiHorizontal - miniHorizontal);
+                    tempo = value;
+                    uiController.setTempoSliderValue(tempo);
                     break;
                 case 1:
                     GUI.Label(new Rect(10, 10, 500, 100), "Main ouverte !", style);
                     break;
 
                 case 2:
-                    value = (this.hands.PalmRight.position.y - miniVertical) / (maxiVertical - miniVertical);
                     GUI.Label(new Rect(10, 10, 500, 100), "Deux doigts !", style);
-                    uiController.setVolumeSliderValue(value);
+                    value = (this.hands.PalmRight.position.y - miniVertical) / (maxiVertical - miniVertical);
+                    volume = value;
+                    uiController.setVolumeSliderValue(volume);
+
                     message.address = "/127.0.0.1:5000";
                     message.values.Add(value);
-                    osc.outPort = 5000;
-                    osc.Send(message);
                     break;
 
-                default:
-                    GUI.Label(new Rect(10, 10, 500, 100), "Chargement !", style);
+                case 3:
+                    GUI.Label(new Rect(10, 10, 500, 100), "Un doigts !", style);
+                    value = (this.hands.PalmRight.position.x - miniHorizontal) / (maxiHorizontal - miniHorizontal);
+                    attack = value;
+                    uiController.setAttackSliderValue(attack);
                     break;
+
+                case 4:
+                    GUI.Label(new Rect(10, 10, 500, 100), "Téléphone !", style);
+                    value = (this.hands.PalmRight.position.y - miniVertical) / (maxiVertical - miniVertical);
+                    frequency = value;
+                    uiController.setFrequencySliderValue(frequency);
+
+                    break;
+
             }
+            message.values.Add(volume);
+            message.values.Add(tempo);
+            message.values.Add(attack);
+            message.values.Add(frequency);
+            osc.Send(message);
         }
-
     }
-
 }
