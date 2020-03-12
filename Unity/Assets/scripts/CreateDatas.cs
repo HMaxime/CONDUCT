@@ -13,7 +13,7 @@ public class CreateDatas : MonoBehaviour
 
     public CreateDatas()
     {
-        this.folder = @"C:\Users\MaximeHamon\Documents\Cours\UBS\S2\INF2212_projet\CONDUCT\New Unity Project\Assets\scripts\Datas";
+        this.folder = Directory.GetCurrentDirectory()+@"\Assets\scripts\Datas";
         isRecording = false;
     }
 
