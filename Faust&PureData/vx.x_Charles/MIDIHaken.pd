@@ -2,13 +2,13 @@
 #X obj 446 645 midiout;
 #X obj 428 426 unpack;
 #X obj 838 458 nbx 2 14 -1e+037 1e+037 0 0 empty empty empty 0 -8 0
-10 -228856 -1 -1 5 256;
+10 -228856 -1 -1 1 256;
 #X obj 725 459 nbx 3 14 -1e+037 1e+037 0 0 empty empty empty 0 -8 0
 10 -228856 -1 -1 0 256;
 #X obj 677 457 nbx 3 14 -1e+037 1e+037 0 0 empty empty empty 0 -8 0
 10 -228856 -1 -1 0 256;
 #X obj 428 456 nbx 3 14 -1e+037 1e+037 0 0 empty empty empty 0 -8 0
-10 -228856 -1 -1 48 256;
+10 -228856 -1 -1 74 256;
 #X obj 470 457 nbx 3 14 -1e+037 1e+037 0 0 empty empty empty 0 -8 0
 10 -228856 -1 -1 0 256;
 #X obj 477 427 unpack;
@@ -18,12 +18,12 @@
 10 -228856 -1 -1 0 256;
 #X obj 530 427 unpack;
 #X obj 590 460 nbx 3 14 -1e+037 1e+037 0 0 empty empty empty 0 -8 0
-10 -228856 -1 -1 49 256;
+10 -228856 -1 -1 0 256;
 #X obj 632 459 nbx 3 14 -1e+037 1e+037 0 0 empty empty empty 0 -8 0
-10 -228856 -1 -1 74 256;
+10 -228856 -1 -1 0 256;
 #X obj 426 400 cyclone/midiparse @hires 2, f 57;
 #X obj 771 458 nbx 5 14 -1e+037 1e+037 0 0 empty empty empty 0 -8 0
-10 -262144 -1 -1 -24 256;
+10 -262144 -1 -1 0 256;
 #X obj 422 334 midiin;
 #X obj 614 475 cyclone/comment 50 11 helvetica ? 0 0 0 0 Control;
 #X obj 722 474 cyclone/comment 50 11 helvetica ? 0 0 0 0 Aftertouch

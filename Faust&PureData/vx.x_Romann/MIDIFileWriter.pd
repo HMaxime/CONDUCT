@@ -1,27 +1,49 @@
 #N canvas 810 7 1087 708 12;
-#X obj 206 259 midiout;
-#X obj 563 186 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+#X obj 219 193 notein;
+#X obj 226 242 pack;
+#X obj 458 606 midiout;
+#X obj 427 338 cyclone/midiformat;
+#X obj 405 194 ctlin;
+#X obj 833 251 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
-#X msg 235 72 stop;
-#X msg 294 72 record;
-#X obj 562 103 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+#X msg 487 419 stop;
+#X obj 418 244 pack;
+#X msg 546 419 record;
+#X obj 482 194 pgmin;
+#X obj 297 195 polytouchin;
+#X obj 308 238 pack;
+#X obj 548 197 touchin;
+#X obj 624 198 bendin, f 7;
+#X msg 601 372 write res/new_sample.mid;
+#X obj 832 168 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
-#X obj 563 143 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+#X obj 833 208 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
-#X text 581 100 Start Recording;
-#X text 582 140 Stop Recording;
-#X text 579 183 Listen to sample;
-#X obj 38 90 midiin;
-#X obj 175 172 cyclone/seq res/a.mid;
-#X msg 349 25 write res/a.mid;
-#X connect 1 0 10 0;
-#X connect 2 0 10 0;
-#X connect 3 0 10 0;
-#X connect 4 0 11 0;
-#X connect 5 0 2 0;
-#X connect 9 0 0 0;
-#X connect 9 0 10 0;
-#X connect 10 0 0 0;
-#X connect 11 0 3 0;
-#X connect 11 0 10 0;
+#X text 851 165 Start Recording;
+#X text 852 205 Stop Recording;
+#X text 849 248 Listen to sample;
+#X obj 427 519 cyclone/seq res/new_sample.mid;
+#X connect 0 0 1 0;
+#X connect 0 1 1 1;
+#X connect 0 2 3 6;
+#X connect 1 0 3 0;
+#X connect 3 0 2 0;
+#X connect 3 0 20 0;
+#X connect 4 0 7 0;
+#X connect 4 1 7 1;
+#X connect 5 0 20 0;
+#X connect 6 0 20 0;
+#X connect 7 0 3 2;
+#X connect 8 0 20 0;
+#X connect 9 0 3 3;
+#X connect 10 0 11 0;
+#X connect 10 1 11 1;
+#X connect 11 0 3 1;
+#X connect 12 0 3 4;
+#X connect 13 0 3 5;
+#X connect 14 0 8 0;
+#X connect 14 0 20 0;
+#X connect 15 0 14 0;
+#X connect 16 0 6 0;
+#X connect 20 0 2 0;
 #X coords 0 0 1 1 85 60 0;
