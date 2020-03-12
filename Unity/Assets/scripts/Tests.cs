@@ -135,7 +135,7 @@ public class Tests : MonoBehaviour
                     break;
 
                 case 3:
-                    GUI.Label(new Rect(10, 10, 500, 100), "Un doigts !", style);
+                    GUI.Label(new Rect(10, 10, 500, 100), "Un doigt !", style);
                     value = (this.hands.PalmRight.position.x - miniHorizontal) / (maxiHorizontal - miniHorizontal);
                     attack = value;
                     uiController.setAttackSliderValue(attack);
