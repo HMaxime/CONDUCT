@@ -2,6 +2,9 @@
 using System.IO;
 using UnityEngine;
 //DONE
+/*
+ * Create datas est un script qui va nous permettre de créer des jeux de données pour nos différents gestes/mouvements.
+ */ 
 public class CreateDatas : MonoBehaviour
 {
     Mouvement hands;
@@ -10,7 +13,9 @@ public class CreateDatas : MonoBehaviour
     string folder;
     bool isRecording;
 
-
+    /*
+     * Le constructeur de createDatas va initialiser les champs dont nous aurons besoin par la suite.
+     */ 
     public CreateDatas()
     {
         this.folder = Directory.GetCurrentDirectory()+@"\Assets\scripts\Datas";
@@ -18,12 +23,18 @@ public class CreateDatas : MonoBehaviour
     }
 
     // Start is called before the first frame update
+    /*
+     * Initialisation des mains captées par le leapmotion
+     */ 
     void Start()
     {
         this.hands = (Mouvement)GetComponent("Mouvement");
     }
 
     // Update is called once per frame
+    /*
+     * A chaque frame, on enregistre les données que l'ont reçois du leapMotion dans le fichier de données.
+     */ 
     void Update()
     {
         if (isRecording)
@@ -39,6 +50,9 @@ public class CreateDatas : MonoBehaviour
         }
     }
 
+    /*
+     * OnGui est une méthode qui permet d'avoir accès à une interface graphique, facilitant l'enregistrement de données.
+     */ 
     private void OnGUI()
     {
         if (isRecording)

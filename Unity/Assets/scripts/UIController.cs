@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+/*
+ * UIController permet de controler les éléments UI des interfaces graphiques.
+ */ 
 public class UIController : MonoBehaviour
 {
     Slider volumeSlider;

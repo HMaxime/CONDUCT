@@ -1,7 +1,13 @@
 ﻿using UnityEngine;
 //DONE
+/*
+ * Util est une classe contenant des méthodes utilitaires.
+ */ 
 public class Util
 {
+    /*
+     * Donne l'élément le plus fréquent dans un tableau.
+     */ 
     public static int getMostFrequentElement(int[] tab_)
     {
         int currentValue = tab_[0];
@@ -32,6 +38,9 @@ public class Util
         return currentValue;
     }
 
+    /*
+     * Permet, à partir d'un tableau, de retournerles K premières colonnes.
+     */ 
     public static int[] getFirstKcolumn(int k_, int i_, float[][] tab_)
     {
         int[] res = new int[k_];
@@ -43,6 +52,9 @@ public class Util
         return res;
     }
 
+    /*
+     * Calcule la distance entre deux points.
+     */ 
     public static float ComputeDistance(float[] p1, float[] p2)
     {
         float res = 0;
@@ -53,7 +65,9 @@ public class Util
         return res;
     }
 
-
+    /*
+     * permet de convertir un objet de la classe Transform en array.
+     */ 
     public static float[] posTransformToArray(Transform tr) => new float[3] { tr.position.x, tr.position.y, tr.position.z };
 
 }

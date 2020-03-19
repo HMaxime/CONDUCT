@@ -2,6 +2,9 @@
 using System.IO;
 using UnityEngine;
 
+/*
+ * La méthode Tests nous permet de tester les différents algorithmes de classification, tout en permettant l'envoie de message OSC vers PureData.
+ */ 
 public class Tests : MonoBehaviour
 {
     Mouvement hands;
@@ -26,6 +29,9 @@ public class Tests : MonoBehaviour
 
     float volume, tempo, attack, frequency=0;
 
+    /*
+     * On initialise tous les champs dont nous allons avoir besoin par la suite.
+     */ 
     private void Start()
     {
         osc = (OSC)GetComponent("OSC");
@@ -38,6 +44,9 @@ public class Tests : MonoBehaviour
     }
 
     // Update is called once per frame
+    /*
+     * On met à jour les mains, ainsi que la distance entre les différents doigts de la main gauche.
+     */ 
     void Update()
     {
         this.hands = (Mouvement)GetComponent("Mouvement");
@@ -51,7 +60,9 @@ public class Tests : MonoBehaviour
     }
 
 
-
+    /*
+     * OnGui nous permet d'avoir une interface graphique.
+     */ 
     private void OnGUI()
     {
         GUIStyle style = new GUIStyle("Box");

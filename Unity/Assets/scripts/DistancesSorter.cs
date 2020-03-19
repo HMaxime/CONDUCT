@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 //DONE
+/*
+ * DataSorter est une classe héritant de IComparer qui nous permet de trier les données pour les différents algorithmes de classifications.
+ */ 
 public class DistancesSorter : IComparer<float[]>
 {
 

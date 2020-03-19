@@ -1,6 +1,9 @@
 ﻿using UnityEngine;
 using static Util;
 //DONE
+/*
+ * Mouvement est la classe qui carctérise nos mains, elle contient les champs relatifs à toutes les parties des mains ainsi que des méthodes utiles.
+ */ 
 public class Mouvement : MonoBehaviour
 {
     private Transform leftHand;
@@ -35,6 +38,9 @@ public class Mouvement : MonoBehaviour
     public Transform RingRight { get => ringRight; }
     public Transform PalmRight { get => palmRight; }
 
+    /*
+     * On initialise les doigts des mains lors de la première frame.
+     */ 
     private void Start()
     {
         leftHand = this.gameObject.transform.GetChild(1);
@@ -55,13 +61,18 @@ public class Mouvement : MonoBehaviour
         palmRight = RightHand.GetChild(5);
     }
 
+    /*
+     * A chaque nouvelle frame, on met à jour les mains.
+     */ 
     private void Update()
     {
         leftHand = this.gameObject.transform.GetChild(1);
         rightHand = this.gameObject.transform.GetChild(0);
     }
 
-
+    /*
+     * Cette méthode nous permet de connaître la position d'une main.
+     */ 
     public float[] getPositionsOfHands(int nbHand)
     {
         Transform hand;
@@ -80,6 +91,9 @@ public class Mouvement : MonoBehaviour
         return posTransformToArray(hand);
     }
 
+    /*
+     * Cette méthode nous donne accès à la distance entre deux membres, faisant partie de la même main ou non.
+     */ 
     public float getDistanceBetween(Transform tr1, Transform tr2)
     {
         return ComputeDistance(posTransformToArray(tr1), posTransformToArray(tr2));

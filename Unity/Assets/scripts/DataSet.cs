@@ -2,6 +2,10 @@
 using System.Linq;
 using UnityEngine;
 
+/*
+ * DataSet est une classe qui nous permet d'enregistrer des jeux de données.
+ * 
+ */ 
 public class DataSet
 {
     float[][] datas;
