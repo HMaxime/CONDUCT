@@ -49,6 +49,7 @@ public class Tests : MonoBehaviour
      */ 
     void Update()
     {
+
         this.hands = (Mouvement)GetComponent("Mouvement");
         palmLeft = hands.PalmLeft;
         actualLeftHand[0] = hands.getDistanceBetween(hands.ThumbLeft, palmLeft);
@@ -56,7 +57,9 @@ public class Tests : MonoBehaviour
         actualLeftHand[2] = hands.getDistanceBetween(hands.MiddleLeft, palmLeft);
         actualLeftHand[3] = hands.getDistanceBetween(hands.PinkLeft, palmLeft);
         actualLeftHand[4] = hands.getDistanceBetween(hands.RingLeft, palmLeft);
+        /*
         this.classe = classifier.knn(3, dataset.Datas, dataset.Target, actualLeftHand);
+        */
     }
 
 
