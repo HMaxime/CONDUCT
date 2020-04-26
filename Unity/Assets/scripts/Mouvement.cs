@@ -96,6 +96,6 @@ public class Mouvement : MonoBehaviour
      */ 
     public float getDistanceBetween(Transform tr1, Transform tr2)
     {
-        return ComputeDistance(posTransformToArray(tr1), posTransformToArray(tr2));
+        return computeEuclidianDistance(posTransformToArray(tr1), posTransformToArray(tr2));
     }
 }

@@ -57,9 +57,9 @@ public class Tests : MonoBehaviour
         actualLeftHand[2] = hands.getDistanceBetween(hands.MiddleLeft, palmLeft);
         actualLeftHand[3] = hands.getDistanceBetween(hands.PinkLeft, palmLeft);
         actualLeftHand[4] = hands.getDistanceBetween(hands.RingLeft, palmLeft);
-        /*
+        
         this.classe = classifier.knn(3, dataset.Datas, dataset.Target, actualLeftHand);
-        */
+        
     }
 
 
@@ -90,6 +90,8 @@ public class Tests : MonoBehaviour
                 GUI.Label(new Rect(1, 60, 1000, 40), "2 doigts => fin de la calibration vertical", style);
 
                 //Fin de la calibration vertical
+
+		
                 if (this.classe == 2)
                 {
                     calibrationVertical = true;

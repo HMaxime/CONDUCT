@@ -22,7 +22,7 @@ public class Classifier
         float[][] distances = new float[target.Length][];
         for (int i = 0; i < datas.Length; i++)
         {
-            distances[i] = new float[] { ComputeDistance(datas[i], data), target[i] };
+            distances[i] = new float[] { computeEuclidianDistance(datas[i], data), target[i] };
         }
         Array.Sort(distances, sorter);
         int[] classes = getFirstKcolumn(K, 1, distances);
