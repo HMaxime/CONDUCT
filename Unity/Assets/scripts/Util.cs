@@ -120,17 +120,13 @@ public class Util
                 res[i][j]=computeEuclidianDistance(p1_[i],p2_[j]);
             }
         }
-
         return res;
-
     }
 
-    
     private static int[][] optimalWarpingPath(float[][] DTW){
         return new int[1][];
     }
     
-
     /*
      * permet de convertir un objet de la classe Transform en array.
      */
