@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 using System.Linq;
+using System;
 //DONE
 /*
  * Util est une classe contenant des méthodes utilitaires.
@@ -12,10 +13,10 @@ public class Util
      */
     public static int getMostFrequentElement(List<int> tab_)
     {
-        int[] histogram= new int[tab_.Max()+1];
+        int[] histogram = new int[tab_.Max() + 1];
         foreach (int elt in tab_)
         {
-            histogram[elt]+=1;
+            histogram[elt] += 1;
         }
         return histogram.ToList().IndexOf(histogram.Max());
     }
@@ -55,60 +56,110 @@ public class Util
         int n = p1_.Count;
         int m = p2_.Count;
 
-        List<List<float>> costMatrix = computeCostMatrix(p1_,p2_);
-        List<List<float>> DTWMatrix = initializeDTWMatrix(n,m);
+        List<List<float>> costMatrix = computeCostMatrix(p1_, p2_);
+        List<List<float>> DTWMatrix = initializeDTWMatrix(n, m);
 
 
-        DTWMatrix[0][0]=0;
-        DTWMatrix[1][1]=costMatrix[0][0];
+        DTWMatrix[0][0] = 0;
+        DTWMatrix[1][1] = costMatrix[0][0];
 
-        for (int i=2;i<n+1;i++){
-            DTWMatrix[i][1] = costMatrix[i-1][0]+DTWMatrix[i-1][1];
+        for (int i = 2; i < n + 1; i++)
+        {
+            DTWMatrix[i][1] = costMatrix[i - 1][0] + DTWMatrix[i - 1][1];
         }
 
-        for(int i=2;i<m+1;i++){
-            DTWMatrix[1][i]=costMatrix[0][i-1]+DTWMatrix[1][i-1];
+        for (int i = 2; i < m + 1; i++)
+        {
+            DTWMatrix[1][i] = costMatrix[0][i - 1] + DTWMatrix[1][i - 1];
         }
 
-        for(int i=2;i<n+1;i++){
-            for(int j=2;j<m+1;i++){
-                DTWMatrix[i][j] = costMatrix[i-1][j-1]; //+ min(DTW[i-1,j-1],DTW[i-1,j],DTW[i,j-1])
+        for (int i = 2; i < n + 1; i++)
+        {
+            for (int j = 2; j < m + 1; i++)
+            {
+                DTWMatrix[i][j] = costMatrix[i - 1][j - 1]; //+ min(DTW[i-1,j-1],DTW[i-1,j],DTW[i,j-1])
             }
         }
 
-        List<List<int>> path=optimalWarpingPath(DTWMatrix);
-        float dtwDistance=DTWMatrix[n][m]/path.Count;
+        List<(int, int)> path = optimalWarpingPath(DTWMatrix);
+        float dtwDistance = DTWMatrix[n][m] / path.Count;
 
         return dtwDistance;
 
     }
 
-    private static List<List<float>> initializeDTWMatrix(int n_,int m_){
+    private static List<List<float>> initializeDTWMatrix(int n_, int m_)
+    {
         List<List<float>> res = new List<List<float>>();
-        for(int i=0;i<n_+1;i++){
-            for(int j=0;j<m_+1;i++){
-                res[i][j]=float.PositiveInfinity;
+        for (int i = 0; i < n_ + 1; i++)
+        {
+            for (int j = 0; j < m_ + 1; i++)
+            {
+                res[i][j] = float.PositiveInfinity;
             }
         }
         return res;
-    }   
+    }
 
-    private static List<List<float>> computeCostMatrix(List<List<float>> p1_,List<List<float>> p2_)
+    private static List<List<float>> computeCostMatrix(List<List<float>> p1_, List<List<float>> p2_)
     {
         List<List<float>> res = new List<List<float>>();
 
-        for(int i = 0;i<p1_.Count;i++){
-            for(int j=0;j<p2_.Count;i++){
-                res[i][j]=computeEuclidianDistance(p1_[i],p2_[j]);
+        for (int i = 0; i < p1_.Count; i++)
+        {
+            for (int j = 0; j < p2_.Count; i++)
+            {
+                res[i][j] = computeEuclidianDistance(p1_[i], p2_[j]);
             }
         }
         return res;
     }
 
-    private static List<List<int>> optimalWarpingPath(List<List<float>> DTW){
-        return new List<List<int>>();
+    private static List<(int, int)> optimalWarpingPath(List<List<float>> DTW)
+    {
+        List<(int, int)> path = new List<(int, int)>();
+        int i = DTW.Count - 1;
+        int j = DTW[0].Count - 1;
+        path.Add((i, j));
+        while (i != 1 && j != 1)
+        {
+            if (i == 1)
+            {
+                path.Add((1, j - 1));
+                j = j - 1;
+            }
+            else if (j == 1)
+            {
+                path.Add((i - 1, 1));
+                i = i - 1;
+            }
+            else
+            {
+                int[] input = { (int)DTW[i - 1][j - 1], (int)DTW[i - 1][j], (int)DTW[i][j - 1] };
+                List<int> backStep = new List<int>(input);
+                int arg = backStep.IndexOf(backStep.Max());
+                if (arg == 0)
+                {
+                    i = i - 1;
+                    j = j - 1;
+                }
+                else if (arg == 1)
+                {
+                    i = i - 1;
+                }
+                else if (arg == 2)
+                {
+                    j = j - 1;
+                }
+                path.Add((i, j));
+            }
+        }
+        path.Add((1, 1));
+
+
+        return path;
     }
-    
+
     /*
      * permet de convertir un objet de la classe Transform en array.
      */
