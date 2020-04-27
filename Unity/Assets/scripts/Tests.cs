@@ -1,10 +1,11 @@
 ﻿using System.Diagnostics;
 using System.IO;
 using UnityEngine;
+using System.Collections.Generic;
 
 /*
  * La méthode Tests nous permet de tester les différents algorithmes de classification, tout en permettant l'envoie de message OSC vers PureData.
- */ 
+ */
 public class Tests : MonoBehaviour
 {
     Mouvement hands;
@@ -13,8 +14,8 @@ public class Tests : MonoBehaviour
     Classifier classifier;
     UIController uiController;
 
-    float[] actualLeftHand;
-    float[] actualRightHand;
+    List<float> actualLeftHand;
+    List<float> actualRightHand;
 
     float miniHorizontal = 20;
     float maxiHorizontal = -20;
@@ -27,18 +28,22 @@ public class Tests : MonoBehaviour
     bool calibration = false;
     bool calibrationVertical = false;
 
-    float volume, tempo, attack, frequency=0;
+    float volume, tempo, attack, frequency = 0;
+
+    public Tests()
+    {
+        this.actualLeftHand = new List<float>(5);
+        this.actualRightHand = new List<float>(5);
+    }
 
     /*
      * On initialise tous les champs dont nous allons avoir besoin par la suite.
-     */ 
+     */
     private void Start()
     {
-        osc = (OSC)GetComponent("OSC");
-        dataset = new DataSet(Directory.GetCurrentDirectory() + @"\Assets\scripts\Datas");
-        actualLeftHand = new float[5];
-        actualRightHand = new float[5];
-        classifier = new Classifier();
+        this.osc = (OSC)GetComponent("OSC");
+        this.dataset = new DataSet(Directory.GetCurrentDirectory() + @"\Assets\scripts\Datas\gestes_statiques");
+        this.classifier = new Classifier();
         this.hands = (Mouvement)GetComponent("Mouvement");
         this.uiController = (UIController)GameObject.Find("Canvas").GetComponent("UIController");
     }
@@ -46,26 +51,26 @@ public class Tests : MonoBehaviour
     // Update is called once per frame
     /*
      * On met à jour les mains, ainsi que la distance entre les différents doigts de la main gauche.
-     */ 
+     */
     void Update()
     {
 
         this.hands = (Mouvement)GetComponent("Mouvement");
-        palmLeft = hands.PalmLeft;
-        actualLeftHand[0] = hands.getDistanceBetween(hands.ThumbLeft, palmLeft);
-        actualLeftHand[1] = hands.getDistanceBetween(hands.IndexLeft, palmLeft);
-        actualLeftHand[2] = hands.getDistanceBetween(hands.MiddleLeft, palmLeft);
-        actualLeftHand[3] = hands.getDistanceBetween(hands.PinkLeft, palmLeft);
-        actualLeftHand[4] = hands.getDistanceBetween(hands.RingLeft, palmLeft);
-        
+        palmLeft = this.hands.PalmLeft;
+        this.actualLeftHand.Add(this.hands.getDistanceBetween(hands.ThumbLeft, palmLeft));
+        this.actualLeftHand.Add(this.hands.getDistanceBetween(hands.IndexLeft, palmLeft));
+        this.actualLeftHand.Add(this.hands.getDistanceBetween(hands.MiddleLeft, palmLeft));
+        this.actualLeftHand.Add(this.hands.getDistanceBetween(hands.PinkLeft, palmLeft));
+        this.actualLeftHand.Add(this.hands.getDistanceBetween(hands.RingLeft, palmLeft));
+
         this.classe = classifier.knn(3, dataset.Datas, dataset.Target, actualLeftHand);
-        
+        this.actualLeftHand.Clear();
     }
 
 
     /*
      * OnGui nous permet d'avoir une interface graphique.
-     */ 
+     */
     private void OnGUI()
     {
         GUIStyle style = new GUIStyle("Box");
@@ -91,7 +96,7 @@ public class Tests : MonoBehaviour
 
                 //Fin de la calibration vertical
 
-		
+
                 if (this.classe == 2)
                 {
                     calibrationVertical = true;

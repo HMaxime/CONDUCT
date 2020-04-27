@@ -1,6 +1,9 @@
 ﻿using System;
 using UnityEngine;
 using static Util;
+using System.Collections.Generic;
+using System.Linq;
+
 //DONE
 /*
  *Cette classe permet de faire de la classification grâce à ses différents méthodes.
@@ -17,15 +20,16 @@ public class Classifier
      *      target : Les étiquettes de notre jeu de données de référence
      *      data : La donnée dont on veut déterminer la nature
      */ 
-    public int knn(int K, float[][] datas, int[] target, float[] data)
+    public int knn(int K, List<List<float>> datas, List<int> target, List<float> data)
     {
-        float[][] distances = new float[target.Length][];
-        for (int i = 0; i < datas.Length; i++)
+        List<List<float>> distances = new List<List<float>>();
+        foreach (List<float> dataRef in datas)
         {
-            distances[i] = new float[] { computeEuclidianDistance(datas[i], data), target[i] };
+            distances.Add(new List<float>() { computeEuclidianDistance(dataRef, data), target[datas.IndexOf(dataRef)]});
         }
-        Array.Sort(distances, sorter);
-        int[] classes = getFirstKcolumn(K, 1, distances);
+        
+        distances.Sort(sorter);
+        List<int> classes = getFirstKcolumn(K, 1, distances);
         return getMostFrequentElement(classes);
     }
 }

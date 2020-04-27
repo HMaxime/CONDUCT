@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using static Util;
+using System.Collections.Generic;
 //DONE
 /*
  * Mouvement est la classe qui carctérise nos mains, elle contient les champs relatifs à toutes les parties des mains ainsi que des méthodes utiles.
@@ -73,7 +74,7 @@ public class Mouvement : MonoBehaviour
     /*
      * Cette méthode nous permet de connaître la position d'une main.
      */ 
-    public float[] getPositionsOfHands(int nbHand)
+    public List<float> getPositionsOfHands(int nbHand)
     {
         Transform hand;
         switch (nbHand)
@@ -88,7 +89,7 @@ public class Mouvement : MonoBehaviour
                 hand = this.PalmLeft;
                 break;
         }
-        return posTransformToArray(hand);
+        return posTransformToList(hand);
     }
 
     /*
@@ -96,6 +97,6 @@ public class Mouvement : MonoBehaviour
      */ 
     public float getDistanceBetween(Transform tr1, Transform tr2)
     {
-        return computeEuclidianDistance(posTransformToArray(tr1), posTransformToArray(tr2));
+        return computeEuclidianDistance(posTransformToList(tr1), posTransformToList(tr2));
     }
 }

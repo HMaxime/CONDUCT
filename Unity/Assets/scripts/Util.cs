@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using System.Collections.Generic;
 //DONE
 /*
  * Util est une classe contenant des méthodes utilitaires.
@@ -8,13 +9,13 @@ public class Util
     /*
      * Donne l'élément le plus fréquent dans un tableau.
      */
-    public static int getMostFrequentElement(int[] tab_)
+    public static int getMostFrequentElement(List<int> tab_)
     {
         int currentValue = tab_[0];
         int count = 1;
         int maxCount = 1;
 
-        for (int i = 1; i < tab_.Length; i++)
+        for (int i = 1; i < tab_.Count; i++)
         {
             if (tab_[i] == tab_[i - 1])
             {
@@ -33,7 +34,7 @@ public class Util
         if (count > maxCount)
         {
             maxCount = count;
-            currentValue = tab_[tab_.Length - 1];
+            currentValue = tab_[tab_.Count - 1];
         }
         return currentValue;
     }
@@ -41,7 +42,7 @@ public class Util
     /*
      * Permet, à partir d'un tableau, de retournerles K premières colonnes.
      */
-    public static int[] getFirstKcolumn(int k_, int i_, float[][] tab_)
+    public static List<int> getFirstKcolumn(int k_, int i_, List<List<float>> tab_)
     {
         int[] res = new int[k_];
         for (int i = 0; i < k_; i++)
@@ -49,16 +50,16 @@ public class Util
             res[i] = (int)tab_[i][i_];
         }
 
-        return res;
+        return new List<int>(res);
     }
 
     /*
      * Calcule la distance euclidienne entre deux points.
      */
-    public static float computeEuclidianDistance(float[] p1_, float[] p2_)
+    public static float computeEuclidianDistance(List<float> p1_, List<float> p2_)
     {
         float res = 0;
-        for (int i = 0; i < p1_.Length; i++)
+        for (int i = 0; i < p1_.Count; i++)
         {
             res += Mathf.Pow(p1_[i] - p2_[i], 2);
         }
@@ -68,13 +69,13 @@ public class Util
     * Calcule la distance DTW entre deux ensembles de points qui constituent des courbes.
     * La distance DTW permet de mesurer la similarité entre deux séries temporelles.
     */
-    public static float computeDTWDistance(float[][] p1_, float[][] p2_)
+    public static float computeDTWDistance(List<List<float>> p1_, List<List<float>> p2_)
     {
-        int n = p1_.Length;
-        int m = p2_.Length;
+        int n = p1_.Count;
+        int m = p2_.Count;
 
-        float[][] costMatrix = computeCostMatrix(p1_,p2_);
-        float[][] DTWMatrix = initializeDTWMatrix(n,m);
+        List<List<float>> costMatrix = computeCostMatrix(p1_,p2_);
+        List<List<float>> DTWMatrix = initializeDTWMatrix(n,m);
 
 
         DTWMatrix[0][0]=0;
@@ -94,42 +95,42 @@ public class Util
             }
         }
 
-        int[][] path=optimalWarpingPath(DTWMatrix);
-        float dtwDistance=DTWMatrix[n][m]/path.Length;
+        List<List<int>> path=optimalWarpingPath(DTWMatrix);
+        float dtwDistance=DTWMatrix[n][m]/path.Count;
 
         return dtwDistance;
 
     }
 
-    private static float[][] initializeDTWMatrix(int n_,int m_){
-        float[][] res = new float[n_+1][];
-        for(int i=0;i<res.Length;i++){
-            for(int j=0;j<res[0].Length;i++){
+    private static List<List<float>> initializeDTWMatrix(int n_,int m_){
+        List<List<float>> res = new List<List<float>>();
+        for(int i=0;i<n_+1;i++){
+            for(int j=0;j<m_+1;i++){
                 res[i][i]=float.PositiveInfinity;
             }
         }
         return res;
     }   
 
-    private static float[][] computeCostMatrix(float[][] p1_,float[][] p2_)
+    private static List<List<float>> computeCostMatrix(List<List<float>> p1_,List<List<float>> p2_)
     {
-        float[][] res = new float[p1_.Length][];
+        List<List<float>> res = new List<List<float>>();
 
-        for(int i = 0;i<p1_.Length;i++){
-            for(int j=0;j<p2_.Length;i++){
+        for(int i = 0;i<p1_.Count;i++){
+            for(int j=0;j<p2_.Count;i++){
                 res[i][j]=computeEuclidianDistance(p1_[i],p2_[j]);
             }
         }
         return res;
     }
 
-    private static int[][] optimalWarpingPath(float[][] DTW){
-        return new int[1][];
+    private static List<List<int>> optimalWarpingPath(List<List<float>> DTW){
+        return new List<List<int>>();
     }
     
     /*
      * permet de convertir un objet de la classe Transform en array.
      */
-    public static float[] posTransformToArray(Transform tr) => new float[3] { tr.position.x, tr.position.y, tr.position.z };
+    public static List<float> posTransformToList(Transform tr) => new List<float>() { tr.position.x, tr.position.y, tr.position.z };
 
 }

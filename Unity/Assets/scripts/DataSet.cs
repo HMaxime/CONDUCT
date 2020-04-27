@@ -1,6 +1,8 @@
 ﻿using System.IO;
 using System.Linq;
 using UnityEngine;
+using System.Collections.Generic;
+using System.Linq;
 
 /*
  * DataSet est une classe qui nous permet d'enregistrer des jeux de données.
@@ -8,24 +10,18 @@ using UnityEngine;
  */ 
 public class DataSet
 {
-    float[][] datas;
-    int[] target;
+    List<List<float>> datas;
+    List<int> target;
 
-    public float[][] Datas { get => datas; }
-    public int[] Target { get => target; }
-    public string[] files;
+    public List<List<float>> Datas { get => datas; }
+    public List<int> Target { get => target; }
+    public List<string> files;
     public DataSet(string folderPath)
     {
-        files = Directory.GetFiles(folderPath,"*.txt");
-        int i = 0;
+        files = new List<string>(Directory.GetFiles(folderPath,"*.txt"));
         //int nbElt= File.ReadLines(files[0]).Count() + File.ReadLines(files[1]).Count()+ File.ReadLines(files[2]).Count();
-        int nbElt = 0;
-        for(int l = 0; l < files.Length; l++)
-        {
-            nbElt += File.ReadLines(files[l]).Count();
-        }
-        datas = new float[nbElt][];
-        target = new int[nbElt];
+        datas = new List<List<float>>();
+        target = new List<int>();
         int k = 0;
         foreach (string file in files)
         {
@@ -33,22 +29,17 @@ public class DataSet
             string line;
             while ((line = reader.ReadLine()) != null)
             {
-                string[] stringDistances = line.Split(' ');
-                float[] floatDistance = new float[stringDistances.Length];
-                for (int j = 0; j < stringDistances.Length; j++)
+                List<string> stringDistances = line.Split(' ').ToList();
+                List<float> floatDistance = new List<float>();
+                foreach (string distance in stringDistances)
                 {
-                    floatDistance[j] = float.Parse(stringDistances[j]);
+                    floatDistance.Add(float.Parse(distance));
                 }
-                datas[i] = floatDistance;
-                target[i] = k;
-                i++;
+                datas.Add(floatDistance);
+                target.Add(k);
             }
             k++;
             reader.Close();
-            
-        }
-        
+        }  
     }
-
-
 }

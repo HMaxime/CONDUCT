@@ -1,6 +1,7 @@
 ﻿using System.Diagnostics;
 using System.IO;
 using UnityEngine;
+using System.Collections.Generic;
 //DONE
 /*
  * Create datas est un script qui va nous permettre de créer des jeux de données pour nos différents gestes/mouvements.
@@ -54,7 +55,7 @@ public class CreateDatas : MonoBehaviour
             }
             else
             {
-                float[] positions = hands.getPositionsOfHands(0);
+                List<float> positions = hands.getPositionsOfHands(0);
                 line += hands.PalmLeft.position.x + " " + hands.PalmLeft.transform.position.y + " " + hands.PalmLeft.transform.position.z;
                 sw.WriteLine(line);
             }
