@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
+using System.Linq;
 //DONE
 /*
  * Util est une classe contenant des méthodes utilitaires.
@@ -11,32 +12,12 @@ public class Util
      */
     public static int getMostFrequentElement(List<int> tab_)
     {
-        int currentValue = tab_[0];
-        int count = 1;
-        int maxCount = 1;
-
-        for (int i = 1; i < tab_.Count; i++)
+        int[] histogram= new int[tab_.Max()+1];
+        foreach (int elt in tab_)
         {
-            if (tab_[i] == tab_[i - 1])
-            {
-                count += 1;
-            }
-            else
-            {
-                if (count > maxCount)
-                {
-                    maxCount = count;
-                    currentValue = tab_[i - 1];
-                }
-                count = 1;
-            }
+            histogram[elt]+=1;
         }
-        if (count > maxCount)
-        {
-            maxCount = count;
-            currentValue = tab_[tab_.Count - 1];
-        }
-        return currentValue;
+        return histogram.ToList().IndexOf(histogram.Max());
     }
 
     /*
@@ -106,7 +87,7 @@ public class Util
         List<List<float>> res = new List<List<float>>();
         for(int i=0;i<n_+1;i++){
             for(int j=0;j<m_+1;i++){
-                res[i][i]=float.PositiveInfinity;
+                res[i][j]=float.PositiveInfinity;
             }
         }
         return res;

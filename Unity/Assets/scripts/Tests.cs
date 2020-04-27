@@ -42,7 +42,7 @@ public class Tests : MonoBehaviour
     private void Start()
     {
         this.osc = (OSC)GetComponent("OSC");
-        this.dataset = new DataSet(Directory.GetCurrentDirectory() + @"\Assets\scripts\Datas\gestes_statiques");
+        this.dataset = new DataSet(Directory.GetCurrentDirectory() + @"\Assets\scripts\Datas\gestes_statiques",false);
         this.classifier = new Classifier();
         this.hands = (Mouvement)GetComponent("Mouvement");
         this.uiController = (UIController)GameObject.Find("Canvas").GetComponent("UIController");
@@ -63,7 +63,7 @@ public class Tests : MonoBehaviour
         this.actualLeftHand.Add(this.hands.getDistanceBetween(hands.PinkLeft, palmLeft));
         this.actualLeftHand.Add(this.hands.getDistanceBetween(hands.RingLeft, palmLeft));
 
-        this.classe = classifier.knn(3, dataset.Datas, dataset.Target, actualLeftHand);
+        this.classe = classifier.knn(3, dataset.DatasStatic, dataset.TargetStatic, actualLeftHand);
         this.actualLeftHand.Clear();
     }
 

@@ -2,44 +2,70 @@
 using System.Linq;
 using UnityEngine;
 using System.Collections.Generic;
-using System.Linq;
 
 /*
  * DataSet est une classe qui nous permet d'enregistrer des jeux de données.
  * 
- */ 
+ */
 public class DataSet
 {
-    List<List<float>> datas;
-    List<int> target;
+    List<List<float>> datasStatic;
+    List<List<List<float>>> datasDynamic;
 
-    public List<List<float>> Datas { get => datas; }
-    public List<int> Target { get => target; }
+    List<int> targetStatic;
+    List<int> targetDynamic;
+
+    public List<List<float>> DatasStatic { get => datasStatic; }
+    public List<List<List<float>>> DatasDynamic { get => datasDynamic; }
+
+    public List<int> TargetStatic { get => targetStatic; }
+    public List<int> TargetDynamic { get => targetDynamic; }
+
+
     public List<string> files;
-    public DataSet(string folderPath)
+    public DataSet(string folderPath, bool isCurve)
     {
-        files = new List<string>(Directory.GetFiles(folderPath,"*.txt"));
-        //int nbElt= File.ReadLines(files[0]).Count() + File.ReadLines(files[1]).Count()+ File.ReadLines(files[2]).Count();
-        datas = new List<List<float>>();
-        target = new List<int>();
+        files = new List<string>(Directory.GetFiles(folderPath, "*.txt"));
         int k = 0;
-        foreach (string file in files)
+        StreamReader reader;
+        //int nbElt= File.ReadLines(files[0]).Count() + File.ReadLines(files[1]).Count()+ File.ReadLines(files[2]).Count();
+        if (!isCurve)
         {
-            StreamReader reader = File.OpenText(file);
-            string line;
-            while ((line = reader.ReadLine()) != null)
+            datasStatic = new List<List<float>>();
+            targetStatic = new List<int>();
+            foreach (string file in files)
             {
-                List<string> stringDistances = line.Split(' ').ToList();
-                List<float> floatDistance = new List<float>();
-                foreach (string distance in stringDistances)
+                reader = File.OpenText(file);
+                string line;
+                while ((line = reader.ReadLine()) != null)
                 {
-                    floatDistance.Add(float.Parse(distance));
+                    List<float> distances = line.Split(' ').Select(float.Parse).ToList();
+                    datasStatic.Add(distances);
+                    targetStatic.Add(k);
                 }
-                datas.Add(floatDistance);
-                target.Add(k);
+                k++;
+                reader.Close();
             }
-            k++;
-            reader.Close();
-        }  
+        }
+        else
+        {
+            datasDynamic = new List<List<List<float>>>();
+            targetDynamic = new List<int>();
+            foreach (string file in files)
+            {
+                reader = File.OpenText(file);
+                string line;
+                List<List<float>> gesture = new List<List<float>>();
+                while ((line = reader.ReadLine()) != null)
+                {
+                    List<float> point = line.Split(' ').Select(float.Parse).ToList();
+                    gesture.Add(point);
+                }
+                targetDynamic.Add(k);
+                datasDynamic.Add(gesture);
+                k++;
+                reader.Close();
+            }
+        }
     }
 }
