@@ -9,9 +9,11 @@ Ajout :
 - Dossier environment, contenant une pièce en 3D, lumière
 - Unity/Assets/Textures pour mettre les textures (bah oui)
 	Dans ce dossier texture on a donc les iamges de textures et les Material qui sont des fichiers créés dans Unity
-
+- Systeme de Decals pour faire apparaitre splat de peinture
+- Choix d'une palette de couleur assortis pour que les couleurs puissent se mélanger entre elles
+- Script EnvironmentController
 /////////
-idées : salle neutre avec cube début, 
+idées : salle neutre
 Ton grave, couleur sombre
 Ton clair, couleurs claires
 
@@ -21,3 +23,7 @@ puis disparaisse
 
 lumière scène changeante en fonction pareil
 
+Estce qu'il y a un max et min sur les sldiers de volume etc
+y'a moye nd'avoir le max et min des sliders ?
+
+slider entre 0 et 1 

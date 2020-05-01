@@ -42,6 +42,27 @@ public class UIController : MonoBehaviour
         this.frequencySlider.value = value;
     }
 
+    public float getVolumeSliderValue()
+    {
+        return this.volumeSlider.value;
+    }
+
+    public float getTempoSliderValue()
+    {
+        return this.tempoSlider.value;
+    }
+
+    public float getAttackSliderValue()
+    {
+        return this.attackSlider.value;
+    }
+
+    public float getFrequencySliderValue()
+    {
+        return this.frequencySlider.value;
+    }
+
+
 
 
 
