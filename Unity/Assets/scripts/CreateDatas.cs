@@ -1,8 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using UnityEngine;
 using UnityEngine.UI;
+
 //DONE
 /*
  * Create datas est un script qui va nous permettre de créer des jeux de données pour nos différents gestes/mouvements.
@@ -14,8 +16,13 @@ public class CreateDatas : MonoBehaviour {
     string folder;
     bool isRecording;
     bool isCurve;
+    int currentIndex;
 
     Button goToPlaySceneButton;
+    Dropdown staticGesturesDropdown;
+
+    GameObject[] disabledButtonWhenRecord;
+    GameObject[] enabledButtonWhenRecord;
 
     /*
      * Le constructeur de createDatas va initialiser les champs dont nous aurons besoin par la suite.
@@ -23,6 +30,7 @@ public class CreateDatas : MonoBehaviour {
     public CreateDatas () {
         this.folder = Directory.GetCurrentDirectory () + @"\Assets\scripts\Datas";
         isRecording = false;
+        currentIndex=0;
     }
 
     // Start is called before the first frame update
@@ -31,8 +39,14 @@ public class CreateDatas : MonoBehaviour {
      */
     void Start () {
         this.hands = (Mouvement) GetComponent ("Mouvement");
-        goToPlaySceneButton = GameObject.Find("Canvas/goToPlaySceneButton").GetComponent<Button>();;
-        goToPlaySceneButton.interactable = !isRecording;
+        staticGesturesDropdown = GameObject.Find ("Canvas/GesturesDropdown").GetComponent<Dropdown> ();
+        staticGesturesDropdown.onValueChanged.AddListener (delegate {
+            changeParametersGestures (staticGesturesDropdown.value);
+        });
+        disabledButtonWhenRecord = GameObject.FindGameObjectsWithTag ("DisableWhenRecord");
+        enabledButtonWhenRecord = GameObject.FindGameObjectsWithTag ("EnableWhenRecord");
+
+        setButtonStateWhenNotRecord ();
     }
 
     // Update is called once per frame
@@ -40,7 +54,6 @@ public class CreateDatas : MonoBehaviour {
      * A chaque frame, on enregistre les données que l'ont reçois du leapMotion dans le fichier de données.
      */
     void Update () {
-        goToPlaySceneButton.interactable = !isRecording;
         if (isRecording) {
             Transform palm = hands.PalmLeft;
             string line = "";
@@ -54,57 +67,95 @@ public class CreateDatas : MonoBehaviour {
                 sw.WriteLine (line);
             } else {
                 List<float> positions = hands.getPositionsOfHands (0);
-                line += hands.PalmLeft.position.x + " " + hands.PalmLeft.transform.position.y + " " + hands.PalmLeft.transform.position.z;
+                line += hands.PalmRight.position.x + " " + hands.PalmRight.transform.position.y + " " + hands.PalmRight.transform.position.z;
                 sw.WriteLine (line);
             }
-
         }
     }
 
     /*
-     * OnGui est une méthode qui permet d'avoir accès à une interface graphique, facilitant l'enregistrement de données.
+     * changeParametersGestures est appelé à chaque fois que l'élément de selection est modifié.
+     * Elle permet de mettre à jour le chemin du fichier dans lequel on veut enregitrer et de dire 
+     * si oui ou non on enregistre une courbe (geste dynamique)
      */
-    private void OnGUI () {
-        if (isRecording) {
-            if (GUI.Button (new Rect (10, 10, 150, 100), "Click to Stop record !")) {
-                isRecording = !isRecording;
-                sw.Close ();
-            }
-        } else {
-            if (GUI.Button (new Rect (10, 10, 300, 100), "Click to record for clenched fist !")) {
-                isCurve = false;
-                path = folder + @"\gestes_statiques\0.txt";
-                sw = File.AppendText (path);
-                isRecording = !isRecording;
-            }
 
-            if (GUI.Button (new Rect (340, 10, 300, 100), "Click to record for Open hand !")) {
+    private void changeParametersGestures (int gestureIndex) {
+        Guid guid = Guid.NewGuid ();
+        switch (gestureIndex) {
+            case 0:
                 isCurve = false;
-                path = folder + @"\gestes_statiques\1.txt";
-                sw = File.AppendText (path);
-                isRecording = !isRecording;
-            }
+                this.path = this.folder + @"\gestes_statiques\0.txt";
+                break;
 
-            if (GUI.Button (new Rect (680, 10, 300, 100), "Click to record for two Fingers !")) {
+            case 1:
                 isCurve = false;
-                path = folder + @"\gestes_statiques\2.txt";
-                sw = File.AppendText (path);
-                isRecording = !isRecording;
-            }
+                this.path = this.folder + @"\gestes_statiques\1.txt";
+                break;
 
-            if (GUI.Button (new Rect (1020, 10, 300, 100), "Click to record for one Finger !")) {
+            case 2:
                 isCurve = false;
-                path = folder + @"\gestes_statiques\3.txt";
-                sw = File.AppendText (path);
-                isRecording = !isRecording;
-            }
+                this.path = this.folder + @"\gestes_statiques\2.txt";
+                break;
 
-            if (GUI.Button (new Rect (1340, 10, 300, 100), "Click to record curve !")) {
+            case 3:
+                isCurve = false;
+                this.path = this.folder + @"\gestes_statiques\3.txt";
+                break;
+
+            case 4:
+                isCurve = false;
+                this.path = this.folder + @"\gestes_statiques\4.txt";
+                break;
+
+            case 5:
                 isCurve = true;
-                path = folder + @"\gestes_dynamiques\curve.txt";
-                sw = File.AppendText (path);
-                isRecording = !isRecording;
-            }
+                this.path = this.folder + @"\gestes_dynamiques\curve8" + "-" + guid + ".txt";
+                break;
+
+            case 6:
+                isCurve = true;
+                this.path = this.folder + @"\gestes_dynamiques\curvefinish" + "-" + guid + ".txt";
+                break;
+
+            case 7:
+                isCurve = true;
+                this.path = this.folder + @"\gestes_dynamiques\curvehighLevel" + "-" + guid + ".txt";
+                break;
+        }
+        currentIndex=gestureIndex;
+    }
+
+    public void launchRecord () {
+        setButtonStateWhenRecord ();
+        changeParametersGestures(currentIndex);
+        UnityEngine.Debug.Log (this.path);
+        sw = File.AppendText (this.path);
+        isRecording = true;
+    }
+
+    public void stopRecord () {
+        setButtonStateWhenNotRecord ();
+        sw.Close ();
+        isRecording=false;
+    }
+
+    private void setButtonStateWhenNotRecord () {
+        foreach (GameObject o in disabledButtonWhenRecord) {
+            o.SetActive (true);
+        }
+
+        foreach (GameObject o in enabledButtonWhenRecord) {
+            o.SetActive (false);
+        }
+    }
+
+    private void setButtonStateWhenRecord () {
+        foreach (GameObject o in disabledButtonWhenRecord) {
+            o.SetActive (false);
+        }
+
+        foreach (GameObject o in enabledButtonWhenRecord) {
+            o.SetActive (true);
         }
     }
 
