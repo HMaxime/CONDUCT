@@ -1,0 +1,23 @@
+Feedback pour l'utilisateur
+changements d'ambiance
+tracé de gestes
+
+
+//////////////////////////
+
+Ajout :
+- Dossier environment, contenant une pièce en 3D, lumière
+- Unity/Assets/Textures pour mettre les textures (bah oui)
+	Dans ce dossier texture on a donc les iamges de textures et les Material qui sont des fichiers créés dans Unity
+
+/////////
+idées : salle neutre avec cube début, 
+Ton grave, couleur sombre
+Ton clair, couleurs claires
+
+particules suit mains correspondent couleurs peint mur
+couleur apparaise aléatoirement endroit tache plus ou moins grosse selon volume, durée de vie quelques secondes
+puis disparaisse
+
+lumière scène changeante en fonction pareil
+
