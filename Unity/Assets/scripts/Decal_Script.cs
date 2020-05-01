@@ -5,14 +5,12 @@ using DecalSystem;
 
 public class Decal_Script : MonoBehaviour
 {
-   public GameObject ThisDecal;
+   //public GameObject ThisDecal;
 
     // Start is called before the first frame update
     void Start()
-    {
-        System.Threading.Thread.Sleep(1000);    
-         CreatePrefab();
-
+    { 
+        CreatePrefab();
     }
 
     // Update is called once per frame
@@ -25,10 +23,10 @@ public class Decal_Script : MonoBehaviour
     {
        // instantiate decal
 
-        GameObject obj = Instantiate(ThisDecal, ThisDecal.transform.position, ThisDecal.transform.rotation);
+       // GameObject obj = Instantiate(ThisDecal, ThisDecal.transform.position, ThisDecal.transform.rotation);
 
         //decal implementation!!
-        var decal = obj.GetComponent<Decal>();
+        var decal = this.GetComponent<Decal>();
         if (decal) //if this obj has decal script
         {
             var filter = decal.GetComponent<MeshFilter>();
