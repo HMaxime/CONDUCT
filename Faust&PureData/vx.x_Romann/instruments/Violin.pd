@@ -1,47 +1,25 @@
-#N canvas 183 308 811 543 12;
-#X msg 317 293 envAttack \$1;
-#X msg 165 292 freq \$1;
-#X msg 414 293 vibratoFrequency \$1;
-#X msg 229 292 sustain \$1;
-#X msg 99 293 gain \$1;
-#X msg 563 292 bend \$1;
-#X obj 615 427 outlet~;
-#X msg 440 435 outGain 1;
-#X obj 29 273 inlet;
-#X obj 191 216 inlet;
-#X obj 264 217 inlet;
-#X obj 323 225 inlet;
-#X obj 410 222 inlet;
-#X obj 492 222 inlet;
-#X obj 461 343 faustgen~ FAUST_instruments/violinMIDI;
-#X msg 548 192 1;
-#X msg 374 192 1;
-#X obj 160 5 hsl 600 30 0.65 0.75 0 0 empty empty empty -2 -8 0 10
--262144 -1 -1 30100 1;
-#X obj 103 22 nbx 5 14 -1e+037 1e+037 0 0 empty empty empty 0 -8 0
-10 -262144 -1 -1 0.70025 256;
-#X msg 61 437 vibratoGain 1;
-#X obj 160 35 hsl 600 30 0.1 5 0 0 empty empty empty -2 -8 0 10 -262144
--1 -1 28800 1;
-#X obj 100 44 nbx 5 14 -1e+037 1e+037 0 0 empty empty empty 0 -8 0
-10 -262144 -1 -1 2.45593 256;
-#X obj 412 260 * 5;
-#X obj 321 263 * 2.316;
-#X obj 164 81 hsl 600 30 0.1 0.3 0 0 empty empty empty -2 -8 0 10 -262144
--1 -1 26100 1;
-#X obj 99 90 nbx 5 14 -1e+037 1e+037 0 0 empty empty empty 0 -8 0 10
--262144 -1 -1 0.187145 256;
-#X obj 159 124 hsl 600 30 0.6 0.7 0 0 empty empty empty -2 -8 0 10
--262144 -1 -1 30500 1;
-#X obj 99 133 nbx 5 14 -1e+037 1e+037 0 0 empty empty empty 0 -8 0
-10 -262144 -1 -1 0.650918 256;
-#X msg 21 174 pressure \$1;
-#X msg 132 174 position \$1;
-#X obj 561 259 * 0.7;
-#X msg 279 436 position 0.65;
-#X obj 23 229 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
--1;
-#X msg 168 436 pressure 0.187;
+#N canvas 224 416 811 543 12;
+#X msg 313 115 envAttack \$1;
+#X msg 161 114 freq \$1;
+#X msg 410 115 vibratoFrequency \$1;
+#X msg 225 114 sustain \$1;
+#X msg 95 115 gain \$1;
+#X msg 559 114 bend \$1;
+#X obj 611 249 outlet~;
+#X msg 436 257 outGain 1;
+#X obj 25 95 inlet;
+#X obj 187 38 inlet;
+#X obj 260 39 inlet;
+#X obj 319 47 inlet;
+#X obj 406 44 inlet;
+#X obj 488 44 inlet;
+#X obj 457 165 faustgen~ FAUST_instruments/violinMIDI;
+#X msg 57 259 vibratoGain 1;
+#X obj 317 85 * 2.316;
+#X obj 557 81 * 0.921;
+#X obj 408 82 * 5;
+#X msg 277 260 position 0.65;
+#X msg 163 259 pressure 0.71;
 #X connect 0 0 14 0;
 #X connect 1 0 14 0;
 #X connect 2 0 14 0;
@@ -50,34 +28,20 @@
 #X connect 5 0 14 0;
 #X connect 7 0 14 0;
 #X connect 8 0 4 0;
-#X connect 8 0 19 0;
+#X connect 8 0 15 0;
 #X connect 8 0 7 0;
-#X connect 8 0 31 0;
-#X connect 8 0 33 0;
+#X connect 8 0 19 0;
+#X connect 8 0 20 0;
 #X connect 9 0 1 0;
 #X connect 10 0 3 0;
-#X connect 11 0 23 0;
-#X connect 12 0 22 0;
-#X connect 13 0 30 0;
+#X connect 11 0 16 0;
+#X connect 12 0 18 0;
+#X connect 13 0 17 0;
 #X connect 14 0 6 0;
-#X connect 15 0 30 0;
-#X connect 16 0 22 0;
-#X connect 17 0 18 0;
-#X connect 18 0 15 0;
-#X connect 18 0 30 1;
+#X connect 15 0 14 0;
+#X connect 16 0 0 0;
+#X connect 17 0 5 0;
+#X connect 18 0 2 0;
 #X connect 19 0 14 0;
-#X connect 20 0 21 0;
-#X connect 21 0 23 1;
-#X connect 22 0 2 0;
-#X connect 23 0 0 0;
-#X connect 24 0 25 0;
-#X connect 25 0 28 0;
-#X connect 26 0 27 0;
-#X connect 27 0 29 0;
-#X connect 28 0 14 0;
-#X connect 28 0 32 0;
-#X connect 29 0 14 0;
-#X connect 30 0 5 0;
-#X connect 31 0 14 0;
-#X connect 33 0 14 0;
+#X connect 20 0 14 0;
 #X coords 0 0 1 1 85 60 0;
