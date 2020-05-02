@@ -1,3 +1,3 @@
 git add *
-git commit -m "Systeme de tache en version Alpha, 1 seule couleur qui aparrait aélatoirement sur les murs."
+git commit -m "Version 1.0 entièrement fonctionnelle."
 git push origin master:alexy
