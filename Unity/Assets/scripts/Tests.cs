@@ -1,7 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using UnityEngine;
+using UnityEngine.UI;
 
 /*
  * La méthode Tests nous permet de tester les différents algorithmes de classification, tout en permettant l'envoie de message OSC vers PureData.
@@ -18,6 +20,7 @@ public class Tests : MonoBehaviour {
     UIController uiController;
 
     List<float> currentLeftHandDistances;
+    List<float> currentRightHandDistances;
     LinkedList<List<float>> currentRightHandMouvement;
 
     float miniHorizontal = 20;
@@ -26,14 +29,24 @@ public class Tests : MonoBehaviour {
     float maxiVertical = -20;
 
     int staticLeftHandClass = -1;
+    int staticRightHandClass = -1;
     int dynamicRighthandClass = -1;
     OscMessage message;
     OSC osc;
     bool calibration = false;
     bool calibrationVertical = false;
     float volume, tempo, attack, frequency = 0;
+
+    bool canDetectMouvement = true;
+
+    Text staticLeftHandStatus;
+    Text dynamicRightHandStatus;
+
+    Text staticRightHandStatus;
+
     public Tests () {
         this.currentLeftHandDistances = new List<float> (5);
+        this.currentRightHandDistances = new List<float> (5);
         this.currentRightHandMouvement = new LinkedList<List<float>> ();;
     }
 
@@ -49,6 +62,12 @@ public class Tests : MonoBehaviour {
         this.classifier = new Classifier ();
         this.hands = (Mouvement) GetComponent ("Mouvement");
         this.uiController = (UIController) GameObject.Find ("Canvas").GetComponent ("UIController");
+
+        this.staticLeftHandStatus = GameObject.Find ("Canvas/ImageStaticLeftHandStatus/staticLeftHandStatus").GetComponent<Text> ();
+        this.staticRightHandStatus = GameObject.Find ("Canvas/ImageStaticRightHandStatus/staticRightHandStatus").GetComponent<Text> ();
+
+        this.dynamicRightHandStatus = GameObject.Find ("Canvas/ImageDynamicRightHandStatus/dynamicRightHandStatus").GetComponent<Text> ();
+
     }
 
     // Update is called once per frame
@@ -59,21 +78,35 @@ public class Tests : MonoBehaviour {
         this.hands = (Mouvement) GetComponent ("Mouvement");
         palmLeft = this.hands.PalmLeft;
         palmRight = this.hands.PalmRight;
+
         this.currentLeftHandDistances.Add (this.hands.getDistanceBetween (hands.ThumbLeft, palmLeft));
         this.currentLeftHandDistances.Add (this.hands.getDistanceBetween (hands.IndexLeft, palmLeft));
         this.currentLeftHandDistances.Add (this.hands.getDistanceBetween (hands.MiddleLeft, palmLeft));
         this.currentLeftHandDistances.Add (this.hands.getDistanceBetween (hands.PinkLeft, palmLeft));
         this.currentLeftHandDistances.Add (this.hands.getDistanceBetween (hands.RingLeft, palmLeft));
 
-        this.currentRightHandMouvement.AddLast (new List<float> () { palmLeft.position.x, palmLeft.position.y, palmLeft.position.z });
+        this.currentRightHandDistances.Add (this.hands.getDistanceBetween (hands.ThumbRight, palmRight));
+        this.currentRightHandDistances.Add (this.hands.getDistanceBetween (hands.IndexRight, palmRight));
+        this.currentRightHandDistances.Add (this.hands.getDistanceBetween (hands.MiddleRight, palmRight));
+        this.currentRightHandDistances.Add (this.hands.getDistanceBetween (hands.PinkRight, palmRight));
+        this.currentRightHandDistances.Add (this.hands.getDistanceBetween (hands.RingRight, palmRight));
+
+        this.currentRightHandMouvement.AddLast (new List<float> () { palmRight.position.x, palmRight.position.y, palmRight.position.z });
         if (this.currentRightHandMouvement.Count >= 50) {
             this.currentRightHandMouvement.RemoveFirst ();
         }
-        if (calibration) {
+
+        this.staticRightHandClass = classifier.knn (3, staticDataset.DatasStatic, staticDataset.TargetStatic, currentRightHandDistances);
+
+        if (calibration && this.staticRightHandClass == 0 && canDetectMouvement) {
+            this.canDetectMouvement = false;
+            StartCoroutine(enableMouvementDetection());
             this.dynamicRighthandClass = classifier.knn (3, dynamicDataset.DatasDynamic, dynamicDataset.TargetDynamic, new List<List<float>> (currentRightHandMouvement));
         }
         this.staticLeftHandClass = classifier.knn (3, staticDataset.DatasStatic, staticDataset.TargetStatic, currentLeftHandDistances);
+
         this.currentLeftHandDistances.Clear ();
+        this.currentRightHandDistances.Clear ();
     }
 
     /*
@@ -126,17 +159,17 @@ public class Tests : MonoBehaviour {
             message.address = "/127.0.0.1:5000";
             switch (this.staticLeftHandClass) {
                 case 0:
-                    GUI.Label (new Rect (10, 10, 500, 100), "Poing Fermé !", style);
+                    this.staticLeftHandStatus.text = "Poing fermé !";
                     value = (this.hands.PalmRight.position.x - miniHorizontal) / (maxiHorizontal - miniHorizontal);
                     tempo = value;
                     uiController.setTempoSliderValue (tempo);
                     break;
                 case 1:
-                    GUI.Label (new Rect (10, 10, 500, 100), "Main ouverte !", style);
+                    this.staticLeftHandStatus.text = "Main ouverte !";
                     break;
 
                 case 2:
-                    GUI.Label (new Rect (10, 10, 500, 100), "Deux doigts !", style);
+                    this.staticLeftHandStatus.text = "Deux doigts !";
                     value = (this.hands.PalmRight.position.y - miniVertical) / (maxiVertical - miniVertical);
                     volume = value;
                     uiController.setVolumeSliderValue (volume);
@@ -145,18 +178,53 @@ public class Tests : MonoBehaviour {
                     break;
 
                 case 3:
-                    GUI.Label (new Rect (10, 10, 500, 100), "Un doigt !", style);
+                    this.staticLeftHandStatus.text = "Un doigt !";
                     value = (this.hands.PalmRight.position.x - miniHorizontal) / (maxiHorizontal - miniHorizontal);
                     attack = value;
                     uiController.setAttackSliderValue (attack);
                     break;
 
                 case 4:
-                    GUI.Label (new Rect (10, 10, 500, 100), "Téléphone !", style);
+                    this.staticLeftHandStatus.text = "Téléphone !";
                     value = (this.hands.PalmRight.position.y - miniVertical) / (maxiVertical - miniVertical);
                     frequency = value;
                     uiController.setFrequencySliderValue (frequency);
                     break;
+            }
+
+            switch (this.staticRightHandClass) {
+                case 0:
+                    this.staticRightHandStatus.text = "Poing fermé !";
+                    break;
+                case 1:
+                    this.staticRightHandStatus.text = "Main ouverte !";
+                    break;
+
+                case 2:
+                    this.staticRightHandStatus.text = "Deux doigts !";
+                    break;
+
+                case 3:
+                    this.staticRightHandStatus.text = "Un doigt !";
+                    break;
+
+                case 4:
+                    this.staticRightHandStatus.text = "Téléphone !";
+                    break;
+            }
+            if (this.dynamicRighthandClass != -1) {
+                switch (dynamicRighthandClass) {
+                    case 0:
+                        this.dynamicRightHandStatus.text = "Le huit !";
+                        break;
+                    case 1:
+                        this.dynamicRightHandStatus.text = "Le finish !";
+                        break;
+                    case 2:
+                        this.dynamicRightHandStatus.text = "Le high !";
+                        break;
+                }
+                this.dynamicRighthandClass = -1;
             }
             message.values.Add (volume);
             message.values.Add (tempo);
@@ -164,5 +232,10 @@ public class Tests : MonoBehaviour {
             message.values.Add (frequency);
             osc.Send (message);
         }
+    }
+
+    IEnumerator enableMouvementDetection () {
+        yield return new WaitForSeconds (1);
+        this.canDetectMouvement = true;
     }
 }

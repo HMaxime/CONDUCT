@@ -24,20 +24,21 @@ public class Classifier {
         foreach (List<float> dataRef in datas) {
             distances.Add (new List<float> () { computeEuclidianDistance (dataRef, data), target[datas.IndexOf (dataRef)] });
         }
-
         distances.Sort (sorter);
+
         List<int> classes = getFirstKcolumn (k, 1, distances);
         return getMostFrequentElement (classes);
+
     }
 
     public int knn (int k, List<List<List<float>>> datas, List<int> target, List<List<float>> data) {
         List<List<float>> distances = new List<List<float>> ();
-        foreach(List<List<float>> dataRef in datas ){
-            distances.Add(new List<float>() {computeDTWDistance(dataRef,data),target[datas.IndexOf (dataRef)]});
+        foreach (List<List<float>> dataRef in datas) {
+            distances.Add (new List<float> () { computeDTWDistance (dataRef, data), target[datas.IndexOf (dataRef)] });
         }
 
-        distances.Sort(sorter);
+        distances.Sort (sorter);
         List<int> classes = getFirstKcolumn (k, 1, distances);
-        return getMostFrequentElement(classes);
+        return getMostFrequentElement (classes);
     }
 }
