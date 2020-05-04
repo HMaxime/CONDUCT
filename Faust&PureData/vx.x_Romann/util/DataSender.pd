@@ -18,7 +18,7 @@
 #X text 120 11 Send;
 #X text 172 59 Vibrato;
 #X obj 343 56 vsl 15 128 0 1 0 0 empty empty empty 0 -9 0 10 -262144
--1 -1 12700 1;
+-1 -1 0 1;
 #X connect 0 0 12 0;
 #X connect 1 0 2 0;
 #X connect 2 0 3 0;
