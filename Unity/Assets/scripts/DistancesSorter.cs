@@ -11,6 +11,6 @@ public class DistancesSorter : IComparer<List<float>>
     public int Compare(List<float> x, List<float> y)
     {
     
-        return  x[0] > y[0] ? 1 : -1;
+        return  x[0] >= y[0] ? 1 : -1;
     }
 }
