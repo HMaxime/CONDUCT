@@ -68,8 +68,13 @@
 #X obj 62 249 int;
 #X msg 288 306 1;
 #X obj 7 107 cyclone/seq MIDI_files/MIDI_sample_short.mid;
+<<<<<<< HEAD
 #X msg 66 327 1, f 2;
 #X msg 94 326 0, f 2;
+=======
+#X msg 94 326 0, f 2;
+#X msg 66 327 1, f 2;
+>>>>>>> d4e2e36efc3ea422115111010444c0ecac98e443
 #X connect 0 0 10 0;
 #X connect 0 1 11 0;
 #X connect 10 0 46 0;
@@ -100,8 +105,13 @@
 #X connect 34 0 52 0;
 #X connect 35 0 39 2;
 #X connect 35 0 40 2;
+<<<<<<< HEAD
 #X connect 36 0 53 0;
 #X connect 36 0 54 0;
+=======
+#X connect 36 0 54 0;
+#X connect 36 0 53 0;
+>>>>>>> d4e2e36efc3ea422115111010444c0ecac98e443
 #X connect 37 0 52 0;
 #X connect 38 0 24 0;
 #X connect 38 1 41 0;
@@ -124,5 +134,10 @@
 #X connect 51 0 40 4;
 #X connect 52 0 18 0;
 #X connect 52 1 32 0;
+<<<<<<< HEAD
 #X connect 53 0 39 0;
 #X connect 54 0 40 0;
+=======
+#X connect 53 0 40 0;
+#X connect 54 0 39 0;
+>>>>>>> d4e2e36efc3ea422115111010444c0ecac98e443
