@@ -1,4 +1,4 @@
-#N canvas 1079 176 801 646 12;
+#N canvas 357 90 801 646 12;
 #X obj 17 165 unpack;
 #X obj 198 213 cyclone/comment 50 11 helvetica ? 0 0 0 0 Control;
 #X obj 312 214 cyclone/comment 50 11 helvetica ? 0 0 0 0 Aftertouch
@@ -15,7 +15,7 @@
 #X obj 264 198 nbx 3 14 -1e+037 1e+037 0 0 empty empty empty 0 -8 0
 10 -228856 -1 -1 32 256;
 #X obj 17 195 nbx 3 14 -1e+037 1e+037 0 0 empty empty empty 0 -8 0
-10 -228856 -1 -1 48 256;
+10 -228856 -1 -1 52 256;
 #X obj 59 196 nbx 3 14 -1e+037 1e+037 0 0 empty empty empty 0 -8 0
 10 -228856 -1 -1 0 256;
 #X obj 66 166 unpack;
@@ -37,7 +37,7 @@
 #X obj 347 585 dac~;
 #X obj 331 509 *~;
 #X obj 426 456 vsl 15 128 0 1 0 0 empty empty empty 0 -9 0 10 -262144
--1 -1 0 1;
+-1 -1 12700 1;
 #X text 32 0 Start reading MIDI file;
 #X text 209 394 Instruments;
 #X text 470 514 Master Volume;
@@ -52,11 +52,11 @@
 #X msg 201 307 0, f 2;
 #X obj 109 234 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
-#X msg 13 72 start \$1;
+#X msg 13 62 start \$1;
 #X obj 608 215 util/OSCParser;
 #X obj 52 397 instruments/Violin;
 #X obj 323 390 instruments/Guitar;
-#X obj 496 66 util/TempoFixer;
+#X obj 460 82 util/TempoFixer;
 #X msg 88 35 1024;
 #X text 73 300 Gain;
 #X text 167 286 Reset sustain;
@@ -68,13 +68,8 @@
 #X obj 62 249 int;
 #X msg 288 306 1;
 #X obj 7 107 cyclone/seq MIDI_files/MIDI_sample_short.mid;
-<<<<<<< HEAD
-#X msg 66 327 1, f 2;
-#X msg 94 326 0, f 2;
-=======
 #X msg 94 326 0, f 2;
 #X msg 66 327 1, f 2;
->>>>>>> d4e2e36efc3ea422115111010444c0ecac98e443
 #X connect 0 0 10 0;
 #X connect 0 1 11 0;
 #X connect 10 0 46 0;
@@ -105,13 +100,8 @@
 #X connect 34 0 52 0;
 #X connect 35 0 39 2;
 #X connect 35 0 40 2;
-<<<<<<< HEAD
-#X connect 36 0 53 0;
-#X connect 36 0 54 0;
-=======
 #X connect 36 0 54 0;
 #X connect 36 0 53 0;
->>>>>>> d4e2e36efc3ea422115111010444c0ecac98e443
 #X connect 37 0 52 0;
 #X connect 38 0 24 0;
 #X connect 38 1 41 0;
@@ -134,10 +124,5 @@
 #X connect 51 0 40 4;
 #X connect 52 0 18 0;
 #X connect 52 1 32 0;
-<<<<<<< HEAD
-#X connect 53 0 39 0;
-#X connect 54 0 40 0;
-=======
 #X connect 53 0 40 0;
 #X connect 54 0 39 0;
->>>>>>> d4e2e36efc3ea422115111010444c0ecac98e443
