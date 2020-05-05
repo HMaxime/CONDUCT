@@ -1,14 +1,16 @@
 ﻿using System;
 using UnityEngine;
 using static Util;
+using System.Collections.Generic;
+using System.Linq;
+
 //DONE
 /*
  *Cette classe permet de faire de la classification grâce à ses différents méthodes.
  *
  */
-public class Classifier
-{
-    static DistancesSorter sorter = new DistancesSorter();
+public class Classifier {
+    static DistancesSorter sorter = new DistancesSorter ();
     /*
      * La méthode knn permet de faire une classification selon l'algorithme des K plus proches voisins.
      * Entrées : 
@@ -16,16 +18,27 @@ public class Classifier
      *      datas : Tableaux de nos données de références (les voisins)
      *      target : Les étiquettes de notre jeu de données de référence
      *      data : La donnée dont on veut déterminer la nature
-     */ 
-    public int knn(int K, float[][] datas, int[] target, float[] data)
-    {
-        float[][] distances = new float[target.Length][];
-        for (int i = 0; i < datas.Length; i++)
-        {
-            distances[i] = new float[] { ComputeDistance(datas[i], data), target[i] };
+     */
+    public int knn (int k, List<List<float>> datas, List<int> target, List<float> data) {
+        List<List<float>> distances = new List<List<float>> ();
+        foreach (List<float> dataRef in datas) {
+            distances.Add (new List<float> () { computeEuclidianDistance (dataRef, data), target[datas.IndexOf (dataRef)] });
         }
-        Array.Sort(distances, sorter);
-        int[] classes = getFirstKcolumn(K, 1, distances);
-        return getMostFrequentElement(classes);
+        distances.Sort (sorter);
+
+        List<int> classes = getFirstKcolumn (k, 1, distances);
+        return getMostFrequentElement (classes);
+
+    }
+
+    public int knn (int k, List<List<List<float>>> datas, List<int> target, List<List<float>> data) {
+        List<List<float>> distances = new List<List<float>> ();
+        foreach (List<List<float>> dataRef in datas) {
+            distances.Add (new List<float> () { computeDTWDistance (dataRef, data), target[datas.IndexOf (dataRef)] });
+        }
+
+        distances.Sort (sorter);
+        List<int> classes = getFirstKcolumn (k, 1, distances);
+        return getMostFrequentElement (classes);
     }
 }
