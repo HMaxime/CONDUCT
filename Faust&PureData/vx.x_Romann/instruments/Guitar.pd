@@ -1,4 +1,4 @@
-#N canvas 719 366 759 519 12;
+#N canvas 516 472 759 519 12;
 #X msg 184 216 freq \$1;
 #X msg 258 215 sustain \$1;
 #X msg 108 214 gain \$1;
@@ -9,12 +9,15 @@
 #X obj 190 143 inlet;
 #X obj 264 142 inlet;
 #X obj 341 143 inlet;
-#X obj 476 141 inlet;
+#X obj 475 81 inlet;
 #X obj 311 351 outlet~;
 #X obj 263 287 faustgen~ FAUST_instruments/guitarMIDI;
 #X obj 260 184 / 8.5;
 #X obj 477 182 * 1.358;
 #X obj 341 182 * 0.861;
+#X obj 476 137 + 0.5;
+#X obj 573 147 nbx 5 14 -1e+037 1e+037 0 0 empty empty empty 0 -8 0
+10 -262144 -1 -1 0 256;
 #X connect 0 0 12 0;
 #X connect 1 0 12 0;
 #X connect 2 0 12 0;
@@ -26,8 +29,10 @@
 #X connect 7 0 0 0;
 #X connect 8 0 13 0;
 #X connect 9 0 15 0;
-#X connect 10 0 14 0;
+#X connect 10 0 16 0;
 #X connect 12 0 11 0;
 #X connect 13 0 1 0;
 #X connect 14 0 3 0;
+#X connect 14 0 17 0;
 #X connect 15 0 4 0;
+#X connect 16 0 14 0;

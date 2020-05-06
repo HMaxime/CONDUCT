@@ -1,4 +1,4 @@
-#N canvas 247 535 775 364 12;
+#N canvas 489 624 775 364 12;
 #X msg 313 115 envAttack \$1;
 #X msg 161 114 freq \$1;
 #X msg 410 115 vibratoFrequency \$1;
@@ -12,7 +12,7 @@
 #X obj 260 39 inlet;
 #X obj 319 47 inlet;
 #X obj 406 44 inlet;
-#X obj 488 44 inlet;
+#X obj 552 17 inlet;
 #X obj 457 165 faustgen~ FAUST_instruments/violinMIDI;
 #X msg 57 259 vibratoGain 1;
 #X obj 408 82 * 10;
@@ -20,6 +20,7 @@
 #X msg 307 259 position 0.2641;
 #X msg 183 264 pressure 0.417;
 #X obj 557 81 * 2.57;
+#X obj 558 51 + 0.5;
 #X connect 0 0 14 0;
 #X connect 1 0 14 0;
 #X connect 2 0 14 0;
@@ -36,7 +37,7 @@
 #X connect 10 0 3 0;
 #X connect 11 0 17 0;
 #X connect 12 0 16 0;
-#X connect 13 0 20 0;
+#X connect 13 0 21 0;
 #X connect 14 0 6 0;
 #X connect 15 0 14 0;
 #X connect 16 0 2 0;
@@ -44,4 +45,5 @@
 #X connect 18 0 14 0;
 #X connect 19 0 14 0;
 #X connect 20 0 5 0;
+#X connect 21 0 20 0;
 #X coords 0 0 1 1 85 60 0;
