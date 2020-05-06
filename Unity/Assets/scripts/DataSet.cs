@@ -22,7 +22,7 @@ public class DataSet {
 
     public List<string> files;
     public DataSet (string folderPath, bool isCurve) {
-        files = new List<string> (Directory.GetFiles (folderPath, "*.txt"));
+        files = new List<string> (Directory.GetFiles (Directory.GetCurrentDirectory()+folderPath, "*.txt"));
         int k = 0;
         StreamReader reader;
         //int nbElt= File.ReadLines(files[0]).Count() + File.ReadLines(files[1]).Count()+ File.ReadLines(files[2]).Count();

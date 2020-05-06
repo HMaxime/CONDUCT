@@ -55,9 +55,9 @@ public class Tests : MonoBehaviour {
      */
     private void Start () {
         this.osc = (OSC) GetComponent ("OSC");
-
-        this.staticDataset = new DataSet (Directory.GetCurrentDirectory () + @"\Assets\scripts\Datas\gestes_statiques", false);
-        this.dynamicDataset = new DataSet (Directory.GetCurrentDirectory () + @"\Assets\scripts\Datas\gestes_dynamiques", true);
+        UnityEngine.Debug.Log("LOGGGG : "+Directory.GetCurrentDirectory ());
+        this.staticDataset = new DataSet ("\\Datas\\gestes_statiques", false);
+        this.dynamicDataset = new DataSet ("\\Datas\\gestes_dynamiques", true);
 
         this.classifier = new Classifier ();
         this.hands = (Mouvement) GetComponent ("Mouvement");
