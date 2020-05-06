@@ -1,4 +1,4 @@
-#N canvas 357 90 801 646 12;
+#N canvas 443 43 801 646 12;
 #X obj 17 165 unpack;
 #X obj 198 213 cyclone/comment 50 11 helvetica ? 0 0 0 0 Control;
 #X obj 312 214 cyclone/comment 50 11 helvetica ? 0 0 0 0 Aftertouch
@@ -15,9 +15,9 @@
 #X obj 264 198 nbx 3 14 -1e+037 1e+037 0 0 empty empty empty 0 -8 0
 10 -228856 -1 -1 32 256;
 #X obj 17 195 nbx 3 14 -1e+037 1e+037 0 0 empty empty empty 0 -8 0
-10 -228856 -1 -1 43 256;
+10 -228856 -1 -1 45 256;
 #X obj 59 196 nbx 3 14 -1e+037 1e+037 0 0 empty empty empty 0 -8 0
-10 -228856 -1 -1 74 256;
+10 -228856 -1 -1 78 256;
 #X obj 66 166 unpack;
 #X obj 97 197 nbx 3 14 -1e+037 1e+037 0 0 empty empty empty 0 -8 0
 10 -228856 -1 -1 0 256;
