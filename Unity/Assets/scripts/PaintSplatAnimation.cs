@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Threading;
 using System.Threading.Tasks;
+
 using DecalSystem;
 
 public class PaintSplatAnimation : MonoBehaviour
