@@ -74,6 +74,7 @@ namespace DecalSystem {
 
 
         public static void SetDirty(Decal decal) {
+            //edited by Alexy
             #if UNITY_EDITOR 
             if (decal.gameObject.scene.IsValid()) {
                 if (!EditorApplication.isPlaying) EditorSceneManager.MarkSceneDirty( decal.gameObject.scene );
