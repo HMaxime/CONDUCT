@@ -1,4 +1,4 @@
-#if UNITY_EDITOR
+//#if UNITY_EDITOR edited by Alexy
 namespace DecalSystem {
     using System.Collections;
     using System.Collections.Generic;
@@ -32,12 +32,12 @@ namespace DecalSystem {
             }
         }
 
-
+        #if UNITY_EDITOR //added by Alexy
         [MenuItem( "GameObject/Decal" )]
         internal static void Create() {
             new GameObject( "Decal", typeof( Decal ), typeof( MeshFilter ), typeof( MeshRenderer ) ).isStatic = true;
         }
-
+        #endif
 
         public void OnValidate() {
             if (!Material) Sprite = null;
@@ -97,4 +97,4 @@ namespace DecalSystem {
 
     }
 }
-#endif
+//#endif

@@ -1,3 +1,3 @@
 git add *
-git commit -m "Version 1.01 - Mur arrondis"
+git commit -m "Version buildable"
 git push origin master:alexy
