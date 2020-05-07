@@ -209,28 +209,27 @@ public class Tests : MonoBehaviour {
                     this.staticRightHandStatus.text = "Téléphone !";
                     break;
             }
-            if (staticLeftHandClass == 1) {
-                if (this.dynamicRighthandClass != -1) {
-                    switch (dynamicRighthandClass) {
-                        case 0:
-                            this.dynamicRightHandStatus.text = "Le huit !";
-                            break;
-                        case 1:
-                            this.dynamicRightHandStatus.text = "Le finish !";
-                            value = 0;
-                            volume = value;
-                            uiController.setVolumeSliderValue (volume);
-                            break;
-                        case 2:
-                            this.dynamicRightHandStatus.text = "Le high !";
-                            value = 1;
-                            attack = value;
-                            uiController.setAttackSliderValue (attack);
-                            break;
-                    }
-                    this.dynamicRighthandClass = -1;
+            if (this.dynamicRighthandClass != -1) {
+                switch (dynamicRighthandClass) {
+                    case 0:
+                        this.dynamicRightHandStatus.text = "Le huit !";
+                        break;
+                    case 1:
+                        this.dynamicRightHandStatus.text = "Le finish !";
+                        value = 0;
+                        volume = value;
+                        uiController.setVolumeSliderValue (volume);
+                        break;
+                    case 2:
+                        this.dynamicRightHandStatus.text = "Le high !";
+                        value = 1;
+                        attack = value;
+                        uiController.setAttackSliderValue (attack);
+                        break;
                 }
+                this.dynamicRighthandClass = -1;
             }
+
             message.address = "/127.0.0.1:5000";
             message.values.Add (volume);
             message.values.Add (tempo);
