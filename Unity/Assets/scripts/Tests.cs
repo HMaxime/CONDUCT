@@ -55,7 +55,7 @@ public class Tests : MonoBehaviour {
      */
     private void Start () {
         this.osc = (OSC) GetComponent ("OSC");
-        UnityEngine.Debug.Log("LOGGGG : "+Directory.GetCurrentDirectory ());
+        UnityEngine.Debug.Log ("LOGGGG : " + Directory.GetCurrentDirectory ());
         this.staticDataset = new DataSet ("\\Datas\\gestes_statiques", false);
         this.dynamicDataset = new DataSet ("\\Datas\\gestes_dynamiques", true);
 
@@ -100,7 +100,7 @@ public class Tests : MonoBehaviour {
 
         if (calibration && this.staticRightHandClass == 0 && canDetectMouvement) {
             this.canDetectMouvement = false;
-            StartCoroutine(enableMouvementDetection());
+            StartCoroutine (enableMouvementDetection ());
             this.dynamicRighthandClass = classifier.knn (3, dynamicDataset.DatasDynamic, dynamicDataset.TargetDynamic, new List<List<float>> (currentRightHandMouvement));
         }
         this.staticLeftHandClass = classifier.knn (3, staticDataset.DatasStatic, staticDataset.TargetStatic, currentLeftHandDistances);
@@ -156,7 +156,6 @@ public class Tests : MonoBehaviour {
         } else {
             //Pour avoir les valeurs dans le bon interval : new_x=(x-M)/(N-M)
             message = new OscMessage ();
-            message.address = "/127.0.0.1:5000";
             switch (this.staticLeftHandClass) {
                 case 0:
                     this.staticLeftHandStatus.text = "Poing fermé !";
@@ -173,8 +172,6 @@ public class Tests : MonoBehaviour {
                     value = (this.hands.PalmRight.position.y - miniVertical) / (maxiVertical - miniVertical);
                     volume = value;
                     uiController.setVolumeSliderValue (volume);
-                    message.address = "/127.0.0.1:5000";
-                    message.values.Add (value);
                     break;
 
                 case 3:
@@ -212,20 +209,29 @@ public class Tests : MonoBehaviour {
                     this.staticRightHandStatus.text = "Téléphone !";
                     break;
             }
-            if (this.dynamicRighthandClass != -1) {
-                switch (dynamicRighthandClass) {
-                    case 0:
-                        this.dynamicRightHandStatus.text = "Le huit !";
-                        break;
-                    case 1:
-                        this.dynamicRightHandStatus.text = "Le finish !";
-                        break;
-                    case 2:
-                        this.dynamicRightHandStatus.text = "Le high !";
-                        break;
+            if (staticLeftHandClass == 1) {
+                if (this.dynamicRighthandClass != -1) {
+                    switch (dynamicRighthandClass) {
+                        case 0:
+                            this.dynamicRightHandStatus.text = "Le huit !";
+                            break;
+                        case 1:
+                            this.dynamicRightHandStatus.text = "Le finish !";
+                            value = 0;
+                            volume = value;
+                            uiController.setVolumeSliderValue (volume);
+                            break;
+                        case 2:
+                            this.dynamicRightHandStatus.text = "Le high !";
+                            value = 1;
+                            attack = value;
+                            uiController.setAttackSliderValue (attack);
+                            break;
+                    }
+                    this.dynamicRighthandClass = -1;
                 }
-                this.dynamicRighthandClass = -1;
             }
+            message.address = "/127.0.0.1:5000";
             message.values.Add (volume);
             message.values.Add (tempo);
             message.values.Add (attack);
