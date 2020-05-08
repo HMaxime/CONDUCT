@@ -15,9 +15,9 @@
 #X obj 264 198 nbx 3 14 -1e+037 1e+037 0 0 empty empty empty 0 -8 0
 10 -228856 -1 -1 32 256;
 #X obj 17 195 nbx 3 14 -1e+037 1e+037 0 0 empty empty empty 0 -8 0
-10 -228856 -1 -1 52 256;
+10 -228856 -1 -1 45 256;
 #X obj 59 196 nbx 3 14 -1e+037 1e+037 0 0 empty empty empty 0 -8 0
-10 -228856 -1 -1 0 256;
+10 -228856 -1 -1 82 256;
 #X obj 66 166 unpack;
 #X obj 97 197 nbx 3 14 -1e+037 1e+037 0 0 empty empty empty 0 -8 0
 10 -228856 -1 -1 0 256;
@@ -37,7 +37,7 @@
 #X obj 347 585 dac~;
 #X obj 331 509 *~;
 #X obj 426 456 vsl 15 128 0 1 0 0 empty empty empty 0 -9 0 10 -262144
--1 -1 12700 1;
+-1 -1 5500 1;
 #X text 32 0 Start reading MIDI file;
 #X text 209 394 Instruments;
 #X text 470 514 Master Volume;
@@ -68,8 +68,8 @@
 #X obj 62 249 int;
 #X msg 288 306 1;
 #X obj 7 107 cyclone/seq MIDI_files/MIDI_sample_short.mid;
-#X msg 94 326 0, f 2;
-#X msg 66 327 1, f 2;
+#X msg 94 326 1, f 2;
+#X msg 66 327 0, f 2;
 #X connect 0 0 10 0;
 #X connect 0 1 11 0;
 #X connect 10 0 46 0;
