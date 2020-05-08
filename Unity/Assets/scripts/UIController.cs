@@ -10,7 +10,7 @@ public class UIController : MonoBehaviour
 {
     Slider volumeSlider;
     Slider tempoSlider;
-    Slider attackSlider;
+    Slider vibratoSlider;
     Slider frequencySlider;
     
     // Start is called before the first frame update
@@ -18,7 +18,7 @@ public class UIController : MonoBehaviour
     {
         volumeSlider = gameObject.transform.GetChild(0).GetComponent<Slider>();
         tempoSlider = gameObject.transform.GetChild(1).GetComponent<Slider>();
-        attackSlider = gameObject.transform.GetChild(2).GetComponent<Slider>();
+        vibratoSlider = gameObject.transform.GetChild(2).GetComponent<Slider>();
         frequencySlider = gameObject.transform.GetChild(3).GetComponent<Slider>();
     }
 
@@ -32,9 +32,9 @@ public class UIController : MonoBehaviour
         this.tempoSlider.value = value;
     }
 
-    public void setAttackSliderValue(float value)
+    public void setVibratoSlider(float value)
     {
-        this.attackSlider.value = value;
+        this.vibratoSlider.value = value;
     }
 
     public void setFrequencySliderValue(float value)
@@ -52,9 +52,9 @@ public class UIController : MonoBehaviour
         return this.tempoSlider.value;
     }
 
-    public float getAttackSliderValue()
+    public float getVibratoSlider()
     {
-        return this.attackSlider.value;
+        return this.vibratoSlider.value;
     }
 
     public float getFrequencySliderValue()

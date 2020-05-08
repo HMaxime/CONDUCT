@@ -28,7 +28,7 @@ public class CreateDatas : MonoBehaviour {
      * Le constructeur de createDatas va initialiser les champs dont nous aurons besoin par la suite.
      */
     public CreateDatas () {
-        this.folder = Directory.GetCurrentDirectory () + @"\Assets\scripts\Datas";
+        this.folder = Directory.GetCurrentDirectory () + @"\\Datas";
         isRecording = false;
         currentIndex=0;
     }

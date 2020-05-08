@@ -35,7 +35,7 @@ public class Tests : MonoBehaviour {
     OSC osc;
     bool calibration = false;
     bool calibrationVertical = false;
-    float volume, tempo, attack, frequency = 0;
+    float volume, tempo, vibrato, frequency = 0;
 
     bool canDetectMouvement = true;
 
@@ -177,8 +177,8 @@ public class Tests : MonoBehaviour {
                 case 3:
                     this.staticLeftHandStatus.text = "Un doigt !";
                     value = (this.hands.PalmRight.position.x - miniHorizontal) / (maxiHorizontal - miniHorizontal);
-                    attack = value;
-                    uiController.setAttackSliderValue (attack);
+                    vibrato = value;
+                    uiController.setVibratoSlider (vibrato);
                     break;
 
                 case 4:
@@ -216,15 +216,13 @@ public class Tests : MonoBehaviour {
                         break;
                     case 1:
                         this.dynamicRightHandStatus.text = "Le finish !";
-                        value = 0;
-                        volume = value;
+                        volume = 0;
                         uiController.setVolumeSliderValue (volume);
                         break;
                     case 2:
                         this.dynamicRightHandStatus.text = "Le high !";
-                        value = 1;
-                        attack = value;
-                        uiController.setAttackSliderValue (attack);
+                        frequency = 1;
+                        uiController.setFrequencySliderValue (frequency);
                         break;
                 }
                 this.dynamicRighthandClass = -1;
@@ -233,8 +231,8 @@ public class Tests : MonoBehaviour {
             message.address = "/127.0.0.1:5000";
             message.values.Add (volume);
             message.values.Add (tempo);
-            message.values.Add (attack);
             message.values.Add (frequency);
+            message.values.Add (vibrato);
             osc.Send (message);
         }
     }
