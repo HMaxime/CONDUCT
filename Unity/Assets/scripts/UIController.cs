@@ -52,7 +52,7 @@ public class UIController : MonoBehaviour
         return this.tempoSlider.value;
     }
 
-    public float getVibratoSlider()
+    public float getVibratoSliderValue()
     {
         return this.vibratoSlider.value;
     }

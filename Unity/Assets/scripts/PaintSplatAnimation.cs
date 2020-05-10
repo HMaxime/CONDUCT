@@ -38,6 +38,9 @@ public class PaintSplatAnimation : MonoBehaviour
         attente();
     }
 
+    /*
+    // Controle la durée de fade int via step
+    */
     IEnumerator FadeIn()
     {
         for (float f = 0.00f; f <= 1; f += step){
@@ -49,6 +52,9 @@ public class PaintSplatAnimation : MonoBehaviour
 
     }
 
+    /*
+    // Controle la durée de fade out via step
+    */
     IEnumerator FadeOut()
     {
         for (float f = 1f; f >= 0.00f; f -= step){
