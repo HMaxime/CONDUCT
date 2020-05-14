@@ -1,6 +1,6 @@
 sceneSetups:
 - path: Assets/Scenes/createDatasScene.unity
-  isLoaded: 0
+  isLoaded: 1
   isActive: 0
 - path: Assets/Scenes/playScene.unity
   isLoaded: 1
