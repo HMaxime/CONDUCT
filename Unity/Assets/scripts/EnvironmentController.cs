@@ -119,7 +119,7 @@ public class EnvironmentController : MonoBehaviour
             print("--------------------- DEBUT UPDATE ---------------------");
             float tempo = this.uiController.getTempoSliderValue(); 
             float volume = this.uiController.getVolumeSliderValue();
-            float attack = this.uiController.getAttackSliderValue();
+            float vibrato = this.uiController.getVibratoSliderValue(); // pas utilisé
             float frequency = this.uiController.getFrequencySliderValue();
             
             int index = findIndex(frequency);   
@@ -127,7 +127,7 @@ public class EnvironmentController : MonoBehaviour
             setSplatDuration(tempo); //determine la durée d'affichage d'un splat
             setScaleFactor(volume);
             setLightAmbience(index, tempo);
-            setsplatFadeStep(attack);
+            setsplatFadeStep(tempo);
 
             syncTempoAndSplat(index);
             print("--------------------- FIN UPDATE ---------------------");
@@ -135,12 +135,12 @@ public class EnvironmentController : MonoBehaviour
     }
 
     /*
-    // Determine le temps que mets un splat à apparaitre en fonction de l'attack
+    // Determine le temps que mets un splat à apparaitre en fonction du tempo
     */
-    void setsplatFadeStep(float attack){
-        attack = attack + 0.1f;//pas de division par 0 merci
-        splatFadeStep = attack / 2.0f;
-        print("EnvironmentController Script - setsplatFadeStep(float attack)  " + splatFadeStep);
+    void setsplatFadeStep(float tempo){
+        tempo = tempo + 0.1f;//pas de division par 0 merci
+        splatFadeStep = tempo / 2.0f;
+        print("EnvironmentController Script - setsplatFadeStep(float tempo)  " + splatFadeStep);
     }
 
     /*
