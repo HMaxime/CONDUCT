@@ -1,4 +1,4 @@
-#N canvas 223 109 801 646 12;
+#N canvas 234 60 801 646 12;
 #X obj 17 165 unpack;
 #X obj 198 213 cyclone/comment 50 11 helvetica ? 0 0 0 0 Control;
 #X obj 312 214 cyclone/comment 50 11 helvetica ? 0 0 0 0 Aftertouch
@@ -9,15 +9,15 @@
 ;
 #X obj 262 214 cyclone/comment 0 11 helvetica ? 0 0 0 0 Program;
 #X obj 428 186 nbx 2 14 -1e+037 1e+037 0 0 empty empty empty 0 -8 0
-10 -228856 -1 -1 1 256;
+10 -228856 -1 -1 0 256;
 #X obj 314 198 nbx 3 14 -1e+037 1e+037 0 0 empty empty empty 0 -8 0
 10 -228856 -1 -1 0 256;
 #X obj 264 198 nbx 3 14 -1e+037 1e+037 0 0 empty empty empty 0 -8 0
-10 -228856 -1 -1 32 256;
+10 -228856 -1 -1 0 256;
 #X obj 17 195 nbx 3 14 -1e+037 1e+037 0 0 empty empty empty 0 -8 0
-10 -228856 -1 -1 48 256;
+10 -228856 -1 -1 0 256;
 #X obj 59 196 nbx 3 14 -1e+037 1e+037 0 0 empty empty empty 0 -8 0
-10 -228856 -1 -1 81 256;
+10 -228856 -1 -1 0 256;
 #X obj 66 166 unpack;
 #X obj 97 197 nbx 3 14 -1e+037 1e+037 0 0 empty empty empty 0 -8 0
 10 -228856 -1 -1 0 256;
@@ -37,7 +37,7 @@
 #X obj 347 585 dac~;
 #X obj 331 509 *~;
 #X obj 426 456 vsl 15 128 0 1 0 0 empty empty empty 0 -9 0 10 -262144
--1 -1 12700 1;
+-1 -1 0 1;
 #X text 32 0 Start reading MIDI file;
 #X text 209 394 Instruments;
 #X text 470 514 Master Volume;
@@ -100,8 +100,8 @@
 #X connect 34 0 51 0;
 #X connect 35 0 39 2;
 #X connect 35 0 40 2;
-#X connect 36 0 54 0;
 #X connect 36 0 53 0;
+#X connect 36 0 54 0;
 #X connect 37 0 51 0;
 #X connect 38 0 24 0;
 #X connect 38 1 41 0;
