@@ -1,4 +1,4 @@
-#N canvas 234 60 801 646 12;
+#N canvas 563 0 801 646 12;
 #X obj 17 165 unpack;
 #X obj 198 213 cyclone/comment 50 11 helvetica ? 0 0 0 0 Control;
 #X obj 312 214 cyclone/comment 50 11 helvetica ? 0 0 0 0 Aftertouch
@@ -58,7 +58,7 @@
 #X obj 323 390 instruments/Guitar;
 #X obj 460 82 util/TempoFixer;
 #X msg 88 35 1024;
-#X text 73 300 Gain;
+#X text 74 301 Gain;
 #X text 167 286 Reset sustain;
 #X text 288 279 Bend;
 #X obj 17 228 mtof;
@@ -68,8 +68,8 @@
 #X obj 62 249 int;
 #X obj 7 107 cyclone/seq MIDI_files/MIDI_sample_short.mid;
 #X msg 288 306 0.5;
-#X msg 94 326 1, f 2;
-#X msg 66 327 0, f 2;
+#X msg 95 327 1, f 2;
+#X msg 67 328 1, f 2;
 #X connect 0 0 10 0;
 #X connect 0 1 11 0;
 #X connect 10 0 46 0;
