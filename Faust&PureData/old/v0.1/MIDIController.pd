@@ -1,0 +1,125 @@
+#N canvas 766 227 1278 1041 12;
+#X obj 211 516 midiout;
+#X msg 87 116 stop;
+#X obj 213 463 cyclone/midiflush;
+#X obj 476 159 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 16 210 unpack;
+#X obj 197 258 cyclone/comment 50 11 helvetica ? 0 0 0 0 Control;
+#X obj 311 259 cyclone/comment 50 11 helvetica ? 0 0 0 0 Aftertouch
+;
+#X obj 426 260 cyclone/comment 0 11 helvetica ? 0 0 0 0 Channel;
+#X obj 37 252 cyclone/comment 43 11 helvetica ? 0 0 0 0 Note in;
+#X obj 110 260 cyclone/comment 0 11 helvetica ? 0 0 0 0 Poly touch
+;
+#X obj 261 259 cyclone/comment 0 11 helvetica ? 0 0 0 0 Program;
+#X obj 426 242 nbx 2 14 -1e+037 1e+037 0 0 empty empty empty 0 -8 0
+10 -228856 -1 -1 0 256;
+#X obj 313 243 nbx 3 14 -1e+037 1e+037 0 0 empty empty empty 0 -8 0
+10 -228856 -1 -1 0 256;
+#X obj 263 243 nbx 3 14 -1e+037 1e+037 0 0 empty empty empty 0 -8 0
+10 -228856 -1 -1 0 256;
+#X obj 16 240 nbx 3 14 -1e+037 1e+037 0 0 empty empty empty 0 -8 0
+10 -228856 -1 -1 0 256;
+#X obj 58 241 nbx 3 14 -1e+037 1e+037 0 0 empty empty empty 0 -8 0
+10 -228856 -1 -1 0 256;
+#X obj 65 211 unpack;
+#X obj 96 242 nbx 3 14 -1e+037 1e+037 0 0 empty empty empty 0 -8 0
+10 -228856 -1 -1 0 256;
+#X obj 135 243 nbx 3 14 -1e+037 1e+037 0 0 empty empty empty 0 -8 0
+10 -228856 -1 -1 0 256;
+#X obj 118 211 unpack;
+#X obj 178 244 nbx 3 14 -1e+037 1e+037 0 0 empty empty empty 0 -8 0
+10 -228856 -1 -1 0 256;
+#X obj 220 243 nbx 3 14 -1e+037 1e+037 0 0 empty empty empty 0 -8 0
+10 -228856 -1 -1 0 256;
+#X obj 412 322 cyclone/comment 215 11 helvetica ? 0 0 0 0 comment;
+#X obj 17 295 pack;
+#X obj 120 282 pack;
+#X obj 198 284 pack;
+#X floatatom 66 295 5 0 0 0 - - -;
+#X obj 16 265 +;
+#X obj 14 184 cyclone/midiparse @hires 2, f 57;
+#X text 45 322 Add to note;
+#X msg 12 117 start \$1;
+#X floatatom 11 87 5 0 0 0 - - -;
+#X obj 214 416 *;
+#X obj 13 9 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X text 32 1 Start;
+#X obj 13 33 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X text 35 31 Stop;
+#X obj 486 330 nbx 5 14 0 1 0 0 empty empty empty 0 -8 0 10 -262144
+-1 -1 0 256;
+#X text 52 87 tempo;
+#X obj 359 242 nbx 5 14 -1e+037 1e+037 0 0 empty empty empty 0 -8 0
+10 -262144 -1 -1 0 256;
+#X text 368 260 pitch;
+#X text 495 157 Flush;
+#X text 18 615 Note;
+#X text 296 618 Volume;
+#X text 545 325 volume;
+#X msg 349 618 listen 5001;
+#X text 564 615 Pitch;
+#X msg 612 615 listen 5002;
+#X obj 12 153 cyclone/seq res/compo1.mid;
+#X msg 62 616 listen 5000;
+#X obj 65 674 OSCParser;
+#X obj 349 679 OSCParser;
+#X obj 613 676 OSCParser;
+#X obj 63 645 netreceive -u -b 5000;
+#X obj 350 647 netreceive -u -b 5001;
+#X obj 613 644 netreceive -u -b 5002;
+#X obj 214 347 cyclone/midiformat;
+#X connect 1 0 3 0;
+#X connect 1 0 48 0;
+#X connect 2 0 0 0;
+#X connect 3 0 2 0;
+#X connect 4 0 14 0;
+#X connect 4 1 15 0;
+#X connect 11 0 56 6;
+#X connect 12 0 56 4;
+#X connect 13 0 56 3;
+#X connect 14 0 27 0;
+#X connect 15 0 23 1;
+#X connect 16 0 17 0;
+#X connect 16 1 18 0;
+#X connect 17 0 24 0;
+#X connect 18 0 24 1;
+#X connect 19 0 20 0;
+#X connect 19 1 21 0;
+#X connect 20 0 25 0;
+#X connect 21 0 25 1;
+#X connect 23 0 56 0;
+#X connect 24 0 56 1;
+#X connect 25 0 56 2;
+#X connect 26 0 3 0;
+#X connect 26 0 27 1;
+#X connect 27 0 23 0;
+#X connect 28 0 4 0;
+#X connect 28 1 16 0;
+#X connect 28 2 19 0;
+#X connect 28 4 12 0;
+#X connect 28 6 11 0;
+#X connect 30 0 48 0;
+#X connect 31 0 30 0;
+#X connect 32 0 2 0;
+#X connect 33 0 31 0;
+#X connect 35 0 1 0;
+#X connect 37 0 32 1;
+#X connect 37 0 3 0;
+#X connect 39 0 56 5;
+#X connect 45 0 54 0;
+#X connect 47 0 55 0;
+#X connect 48 0 28 0;
+#X connect 48 1 3 0;
+#X connect 48 1 31 0;
+#X connect 49 0 53 0;
+#X connect 50 0 26 0;
+#X connect 51 0 37 0;
+#X connect 52 0 39 0;
+#X connect 53 0 50 0;
+#X connect 54 0 51 0;
+#X connect 55 0 52 0;
+#X connect 56 0 32 0;

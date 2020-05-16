@@ -1,0 +1,71 @@
+#N canvas 1166 152 1278 1326 12;
+#X obj 446 645 midiout;
+#X obj 428 426 unpack;
+#X obj 838 458 nbx 2 14 -1e+037 1e+037 0 0 empty empty empty 0 -8 0
+10 -228856 -1 -1 1 256;
+#X obj 725 459 nbx 3 14 -1e+037 1e+037 0 0 empty empty empty 0 -8 0
+10 -228856 -1 -1 0 256;
+#X obj 677 457 nbx 3 14 -1e+037 1e+037 0 0 empty empty empty 0 -8 0
+10 -228856 -1 -1 0 256;
+#X obj 428 456 nbx 3 14 -1e+037 1e+037 0 0 empty empty empty 0 -8 0
+10 -228856 -1 -1 74 256;
+#X obj 470 457 nbx 3 14 -1e+037 1e+037 0 0 empty empty empty 0 -8 0
+10 -228856 -1 -1 0 256;
+#X obj 477 427 unpack;
+#X obj 508 458 nbx 3 14 -1e+037 1e+037 0 0 empty empty empty 0 -8 0
+10 -228856 -1 -1 0 256;
+#X obj 547 459 nbx 3 14 -1e+037 1e+037 0 0 empty empty empty 0 -8 0
+10 -228856 -1 -1 0 256;
+#X obj 530 427 unpack;
+#X obj 590 460 nbx 3 14 -1e+037 1e+037 0 0 empty empty empty 0 -8 0
+10 -228856 -1 -1 0 256;
+#X obj 632 459 nbx 3 14 -1e+037 1e+037 0 0 empty empty empty 0 -8 0
+10 -228856 -1 -1 0 256;
+#X obj 426 400 cyclone/midiparse @hires 2, f 57;
+#X obj 771 458 nbx 5 14 -1e+037 1e+037 0 0 empty empty empty 0 -8 0
+10 -262144 -1 -1 0 256;
+#X obj 422 334 midiin;
+#X obj 614 475 cyclone/comment 50 11 helvetica ? 0 0 0 0 Control;
+#X obj 722 474 cyclone/comment 50 11 helvetica ? 0 0 0 0 Aftertouch
+;
+#X obj 769 476 cyclone/comment 0 11 helvetica ? 0 0 0 0 Pitch Bend
+;
+#X obj 832 472 cyclone/comment 0 11 helvetica ? 0 0 0 0 Channel;
+#X obj 446 475 cyclone/comment 43 11 helvetica ? 0 0 0 0 Note in;
+#X obj 522 476 cyclone/comment 0 11 helvetica ? 0 0 0 0 Poly touch
+;
+#X obj 671 475 cyclone/comment 0 11 helvetica ? 0 0 0 0 Program;
+#X obj 835 491 cyclone/comment 215 11 helvetica ? 0 0 0 0 (-8192 to
+8191 in @hires 2);
+#X obj 582 559 cyclone/midiformat;
+#X obj 472 511 pack;
+#X obj 537 509 pack;
+#X obj 615 510 pack;
+#X connect 1 0 5 0;
+#X connect 1 1 6 0;
+#X connect 2 0 24 6;
+#X connect 3 0 24 4;
+#X connect 4 0 24 3;
+#X connect 5 0 25 0;
+#X connect 6 0 25 1;
+#X connect 7 0 8 0;
+#X connect 7 1 9 0;
+#X connect 8 0 26 0;
+#X connect 9 0 26 1;
+#X connect 10 0 11 0;
+#X connect 10 1 12 0;
+#X connect 11 0 27 0;
+#X connect 12 0 27 1;
+#X connect 13 0 1 0;
+#X connect 13 1 7 0;
+#X connect 13 2 10 0;
+#X connect 13 3 4 0;
+#X connect 13 4 3 0;
+#X connect 13 5 14 0;
+#X connect 13 6 2 0;
+#X connect 14 0 24 5;
+#X connect 15 0 13 0;
+#X connect 24 0 0 0;
+#X connect 25 0 24 0;
+#X connect 26 0 24 1;
+#X connect 27 0 24 2;
