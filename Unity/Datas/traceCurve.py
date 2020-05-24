@@ -7,13 +7,15 @@ Created on Thu Mar 19 10:44:26 2020
 import csv
 from plotly.offline import plot
 import plotly.express as px
+import os
+print (os.getcwd())
 
 
 x = []
 y = []
 z=[]
 
-with open('curve.txt','r') as csvfile:
+with open('Documents/Cours/S2/INF2212_projet/CONDUCT/Unity/Datas/gestes_dynamiques/curvehighLevel-bd707af8-5ba5-4fcd-ace9-773b422c12ce.txt','r') as csvfile:
     plots = csv.reader(csvfile, delimiter=' ')
     for row in plots:
         x.append(float(row[0].replace(",",".")))
