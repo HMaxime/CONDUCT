@@ -5,7 +5,6 @@ using System.IO;
 using UnityEngine;
 using UnityEngine.UI;
 
-//DONE
 /*
  * Create datas est un script qui va nous permettre de créer des jeux de données pour nos différents gestes/mouvements.
  */
@@ -125,6 +124,9 @@ public class CreateDatas : MonoBehaviour {
         currentIndex=gestureIndex;
     }
 
+    /*
+    * Cette méthode lance l'enregistrement des gestes    
+    */
     public void launchRecord () {
         setButtonStateWhenRecord ();
         changeParametersGestures(currentIndex);
@@ -133,12 +135,18 @@ public class CreateDatas : MonoBehaviour {
         isRecording = true;
     }
 
+    /*
+    * Cette méthode permet de stopper l'enregistrement des gestes
+    */
     public void stopRecord () {
         setButtonStateWhenNotRecord ();
         sw.Close ();
         isRecording=false;
     }
 
+    /*
+    * Cette méthode permet de changer l'état des boutons de la scène
+    */
     private void setButtonStateWhenNotRecord () {
         foreach (GameObject o in disabledButtonWhenRecord) {
             o.SetActive (true);
@@ -148,7 +156,9 @@ public class CreateDatas : MonoBehaviour {
             o.SetActive (false);
         }
     }
-
+    /*
+    * Cette méthode permet de changer l'état des boutons de la scène
+    */
     private void setButtonStateWhenRecord () {
         foreach (GameObject o in disabledButtonWhenRecord) {
             o.SetActive (false);

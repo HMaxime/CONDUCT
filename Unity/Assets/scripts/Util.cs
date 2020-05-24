@@ -75,6 +75,9 @@ public class Util {
 
     }
 
+    /*
+    * Initialise la matrice de DTW
+    */
     private static List<List<float>> initializeDTWMatrix (int n_, int m_) {
         List<List<float>> res = new List<List<float>> (n_);
         for (int i = 0; i < n_ + 1; i++) {
@@ -87,6 +90,9 @@ public class Util {
         return res;
     }
 
+    /*
+    * Calcule de la matrice de cout
+    */
     private static List<List<float>> computeCostMatrix (List<List<float>> p1_, List<List<float>> p2_) {
         List<List<float>> res = new List<List<float>> (p1_.Count);
 
@@ -100,6 +106,9 @@ public class Util {
         return res;
     }
 
+    /*
+    * Calcul du chémin Optimale 
+    */
     private static List < (int, int) > optimalWarpingPath (List<List<float>> DTW) {
         List < (int, int) > path = new List < (int, int) > ();
         int i = DTW.Count - 1;

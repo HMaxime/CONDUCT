@@ -4,7 +4,6 @@ using static Util;
 using System.Collections.Generic;
 using System.Linq;
 
-//DONE
 /*
  *Cette classe permet de faire de la classification grâce à ses différents méthodes.
  *

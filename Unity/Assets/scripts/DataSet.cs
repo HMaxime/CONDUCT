@@ -5,7 +5,6 @@ using UnityEngine;
 
 /*
  * DataSet est une classe qui nous permet d'enregistrer des jeux de données.
- * 
  */
 public class DataSet {
     List<List<float>> datasStatic;
@@ -25,7 +24,6 @@ public class DataSet {
         files = new List<string> (Directory.GetFiles (Directory.GetCurrentDirectory()+folderPath, "*.txt"));
         int k = 0;
         StreamReader reader;
-        //int nbElt= File.ReadLines(files[0]).Count() + File.ReadLines(files[1]).Count()+ File.ReadLines(files[2]).Count();
         if (!isCurve) {
             datasStatic = new List<List<float>> ();
             targetStatic = new List<int> ();
